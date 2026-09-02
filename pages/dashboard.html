@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord — Grounders</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">G</span>
+        <span class="logo-text">Grounders</span>
+      </a>
+      <nav class="sidebar-nav">
+        <span class="sidebar-section">Principal</span>
+        <a href="#" class="sidebar-link active">📊 Tableau de bord</a>
+        <a href="#" class="sidebar-link">🤝 Opportunités</a>
+        <a href="#" class="sidebar-link">💰 Commissions</a>
+        <a href="#" class="sidebar-link">📋 Contrats</a>
+        <span class="sidebar-section">Réseau</span>
+        <a href="#" class="sidebar-link">👥 Mon réseau</a>
+        <a href="#" class="sidebar-link">💬 Messages</a>
+        <a href="#" class="sidebar-link">🔔 Notifications</a>
+        <span class="sidebar-section">Compte</span>
+        <a href="#" class="sidebar-link">⚙️ Paramètres</a>
+        <a href="#" class="sidebar-link">❓ Aide</a>
+      </nav>
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">JD</div>
+        <div class="sidebar-user-info">
+          <strong>Jean Dupont</strong>
+          <span>Plan Pro</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Tableau de bord</h1>
+          <p style="color: var(--gray-500); font-size: 0.938rem;">Bienvenue, Jean. Voici un résumé de votre activité.</p>
+        </div>
+        <a href="#" class="btn btn-primary">+ Nouvelle opportunité</a>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-label">Commissions du mois</div>
+          <div class="stat-card-value">12 450 €</div>
+          <div class="stat-card-change up">+23% vs mois dernier</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Affaires en cours</div>
+          <div class="stat-card-value">8</div>
+          <div class="stat-card-change up">+2 cette semaine</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Taux de conversion</div>
+          <div class="stat-card-value">34%</div>
+          <div class="stat-card-change up">+5pts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Score de confiance</div>
+          <div class="stat-card-value">4.8/5</div>
+          <div class="stat-card-change up">Excellent</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>Opportunités récentes</h3>
+            <a href="#" style="color: var(--primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;">Voir tout</a>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Entreprise</th>
+                  <th>Montant</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>TechVision SAS</strong></td>
+                  <td>8 500 €</td>
+                  <td><span class="badge badge-success">Conclue</span></td>
+                </tr>
+                <tr>
+                  <td><strong>DataFlow Pro</strong></td>
+                  <td>12 000 €</td>
+                  <td><span class="badge badge-warning">En cours</span></td>
+                </tr>
+                <tr>
+                  <td><strong>CloudNet France</strong></td>
+                  <td>5 200 €</td>
+                  <td><span class="badge badge-info">Nouvelle</span></td>
+                </tr>
+                <tr>
+                  <td><strong>InnoStar Group</strong></td>
+                  <td>15 800 €</td>
+                  <td><span class="badge badge-warning">En cours</span></td>
+                </tr>
+                <tr>
+                  <td><strong>GreenTech Solutions</strong></td>
+                  <td>3 400 €</td>
+                  <td><span class="badge badge-danger">Perdue</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <div class="content-card-header">
+            <h3>Activité récente</h3>
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; gap: 14px; align-items: start;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--success);margin-top:6px;flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--gray-800);">Commission reçue — TechVision SAS</div>
+                <div style="font-size:0.813rem;color:var(--gray-400);">Il y a 2 heures · 850 €</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: start;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--primary);margin-top:6px;flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--gray-800);">Nouvelle opportunité reçue</div>
+                <div style="font-size:0.813rem;color:var(--gray-400);">Il y a 5 heures · CloudNet France</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: start;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--warning);margin-top:6px;flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--gray-800);">Contrat signé — DataFlow Pro</div>
+                <div style="font-size:0.813rem;color:var(--gray-400);">Hier · Commission estimée : 1 200 €</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: start;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--gray-800);">Nouveau contact réseau</div>
+                <div style="font-size:0.813rem;color:var(--gray-400);">Il y a 2 jours · Sophie Martin</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: start;">
+              <div style="width:8px;height:8px;border-radius:50%;background:var(--success);margin-top:6px;flex-shrink:0;"></div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--gray-800);">Profil vérifié</div>
+                <div style="font-size:0.813rem;color:var(--gray-400);">Il y a 3 jours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-card-header">
+          <h3>Mes commissions</h3>
+          <a href="#" style="color: var(--primary); font-size: 0.875rem; font-weight: 600; text-decoration: none;">Exporter</a>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Entreprise</th>
+                <th>Type</th>
+                <th>Montant</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>02/09/2026</td>
+                <td><strong>TechVision SAS</strong></td>
+                <td>Mise en relation</td>
+                <td>850 €</td>
+                <td><span class="badge badge-success">Versée</span></td>
+              </tr>
+              <tr>
+                <td>28/08/2026</td>
+                <td><strong>InnoStar Group</strong></td>
+                <td>Contrat signé</td>
+                <td>1 580 €</td>
+                <td><span class="badge badge-warning">En attente</span></td>
+              </tr>
+              <tr>
+                <td>25/08/2026</td>
+                <td><strong>NeoSoft</strong></td>
+                <td>Mise en relation</td>
+                <td>620 €</td>
+                <td><span class="badge badge-success">Versée</span></td>
+              </tr>
+              <tr>
+                <td>20/08/2026</td>
+                <td><strong>DataFlow Pro</strong></td>
+                <td>Contrat signé</td>
+                <td>1 200 €</td>
+                <td><span class="badge badge-warning">En attente</span></td>
+              </tr>
+              <tr>
+                <td>15/08/2026</td>
+                <td><strong>SecurIT</strong></td>
+                <td>Mise en relation</td>
+                <td>450 €</td>
+                <td><span class="badge badge-success">Versée</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+</body>
+</html>
