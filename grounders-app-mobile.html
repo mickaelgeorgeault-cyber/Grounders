@@ -2155,114 +2155,76 @@ function recru(yes,btn){
 }
 
 
-/* ---------- MAP (Leaflet + Canvas tiles, Strava style) ---------- */
+/* ---------- MAP (Leaflet + vraie carte type Strava) ---------- */
 function initMap(){
   if(window._gmap) return;
   if(!window.L) return;
   var el=document.getElementById('map'); if(!el) return;
   el.innerHTML='';
 
-  var map=L.map('map',{zoomControl:false,scrollWheelZoom:true,attributionControl:false,dragging:true}).setView([48.117,-1.72],12);
+  var map=L.map('map',{zoomControl:false,scrollWheelZoom:true,attributionControl:true,dragging:true,minZoom:5,maxZoom:18}).setView([46.8,2.3],6);
   L.control.zoom({position:'bottomright'}).addTo(map);
 
-  /* Canvas tile layer \u2014 procedural Strava-style map, no external tiles */
-  var CanvasTiles=L.GridLayer.extend({
-    createTile:function(coords){
-      var tile=document.createElement('canvas');
-      var s=this.getTileSize(); tile.width=s.x; tile.height=s.y;
-      var ctx=tile.getContext('2d');
-      var z=coords.z, x=coords.x, y=coords.y;
+  /* Vraies tuiles CARTO (style Strava light) \u2014 fonctionne en navigateur direct */
+  var tileOk=false;
+  var carto=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    maxZoom:19,subdomains:'abcd',
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+  }).addTo(map);
+  carto.on('tileload',function(){tileOk=true;});
 
-      /* base color */
-      ctx.fillStyle='#f0ede6'; ctx.fillRect(0,0,s.x,s.y);
-
-      /* seeded random for consistent tiles */
-      function rng(a,b){a=((a*2654435761)^(b*2246822519))>>>0;return(a&0xffff)/65536;}
-
-      /* green patches (parks) */
-      var g=3+Math.floor(rng(x+1,y+z)*4);
-      for(var i=0;i<g;i++){
-        var gx=rng(x*7+i,y*3)*s.x, gy=rng(y*11+i,x*5)*s.y, gr=18+rng(i+x,y+z)*40;
-        ctx.fillStyle='rgba(195,216,183,'+(0.3+rng(i,x+y)*0.25)+')';
-        ctx.beginPath(); ctx.arc(gx,gy,gr,0,Math.PI*2); ctx.fill();
-      }
-
-      /* water patches */
-      if(rng(x*3,y*7+z)>0.6){
-        var wx=rng(x+z,y*2)*s.x, wy=rng(y+z,x*2)*s.y;
-        ctx.fillStyle='rgba(182,215,232,0.5)';
-        ctx.beginPath(); ctx.ellipse(wx,wy,35+rng(x,y)*30,18+rng(y,x)*15,rng(x+y,z)*Math.PI,0,Math.PI*2); ctx.fill();
-      }
-
-      /* grid roads */
-      ctx.strokeStyle='#fff'; ctx.lineWidth=1.8; ctx.lineCap='round';
-      var nroads=3+Math.floor(rng(x*2,y)*3);
-      for(var j=0;j<nroads;j++){
-        ctx.beginPath();
-        if(j%2===0){
-          var ry=rng(x+j*3,y)*s.y;
-          ctx.moveTo(0,ry); ctx.bezierCurveTo(s.x*0.3,ry+rng(j,x)*30-15,s.x*0.7,ry+rng(j+1,y)*30-15,s.x,ry+rng(j,y+x)*20-10);
-        }else{
-          var rx=rng(y+j*3,x)*s.x;
-          ctx.moveTo(rx,0); ctx.bezierCurveTo(rx+rng(j,y)*30-15,s.y*0.3,rx+rng(j+1,x)*30-15,s.y*0.7,rx+rng(j,x+y)*20-10,s.y);
-        }
-        ctx.stroke();
-      }
-
-      /* main roads (thicker) */
-      ctx.strokeStyle='#fff'; ctx.lineWidth=3.5;
-      if(rng(x,y+z*2)>0.4){
-        ctx.beginPath();
-        var my=s.y*0.3+rng(x,y*5)*s.y*0.4;
-        ctx.moveTo(0,my); ctx.quadraticCurveTo(s.x/2,my+rng(x+3,y)*40-20,s.x,my+rng(x,y+3)*30-15);
-        ctx.stroke();
-      }
-
-      /* building blocks */
-      ctx.fillStyle='rgba(222,218,210,0.6)';
-      var nb=4+Math.floor(rng(x*5,y*3)*6);
-      for(var k=0;k<nb;k++){
-        var bx=rng(k*7+x,y+z)*s.x, by=rng(k*11+y,x+z)*s.y, bw=8+rng(k,x+y)*18, bh=6+rng(k+1,x+y)*14;
-        ctx.fillRect(bx,by,bw,bh);
-      }
-
-      return tile;
+  /* Fallback : si aucune tuile apr\u00e8s 3s (CSP artifact), ajouter un fond basique */
+  setTimeout(function(){
+    if(!tileOk){
+      try{map.removeLayer(carto);}catch(e){}
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        maxZoom:19,subdomains:'abc',
+        attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
+      }).addTo(map);
     }
-  });
-  new CanvasTiles().addTo(map);
+  },3000);
 
-  /* Strava-style activity route */
-  var route=[
-    [48.145,-1.836],[48.138,-1.810],[48.130,-1.785],[48.125,-1.755],
-    [48.120,-1.730],[48.115,-1.715],[48.118,-1.695],[48.122,-1.670],
-    [48.128,-1.650],[48.130,-1.640]
-  ];
-  L.polyline(route,{color:'#fff',weight:6,opacity:0.9,lineCap:'round',lineJoin:'round'}).addTo(map);
-  L.polyline(route,{color:'#14C4E8',weight:3.5,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(map);
-
-  /* Grounders logo SVG for markers */
+  /* Grounders logo SVG */
   var gSvg='<svg viewBox="0 0 100 44" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  /* Company pins */
+  /* Entreprises : vraies adresses */
   var pins=[
-    {lat:48.145,lng:-1.836,name:'Elis',id:'elis'},
-    {lat:48.115,lng:-1.715,name:"L'Orange bleue",id:'ob'},
-    {lat:48.130,lng:-1.640,name:'CRM Solutions',id:'crm'},
-    {lat:48.100,lng:-1.750,name:'B3B',id:'b3b'}
+    {lat:48.1456,lng:-1.8364,name:'Elis',sub:'Saint-Gilles (35)',id:'elis'},
+    {lat:48.1047,lng:-1.9116,name:"L'Orange bleue",sub:'Montfort-sur-Meu (35)',id:'ob'},
+    {lat:48.5734,lng:7.7521,name:'CRM Solutions',sub:'Strasbourg (67)',id:'crm'},
+    {lat:48.1817,lng:-1.6350,name:'B3B',sub:'Betton (35)',id:'b3b'}
   ];
+
   pins.forEach(function(p){
     var icon=L.divIcon({
       className:'gpin-wrap',
-      html:'<div class="gpin-circle">'+gSvg+'</div><div class="gpin-label">'+p.name+'</div><div class="gpin-arrow"></div>',
-      iconSize:[48,62],iconAnchor:[24,62]
+      html:'<div class="gpin-circle">'+gSvg+'</div><div class="gpin-arrow"></div><div class="gpin-label">'+p.name+'<br><span style="font-weight:500;font-size:8px;color:#6b7280">'+p.sub+'</span></div>',
+      iconSize:[48,68],iconAnchor:[24,68]
     });
     var mk=L.marker([p.lat,p.lng],{icon:icon}).addTo(map);
     mk.on('click',function(){openFiche(p.id);});
   });
 
-  /* start / end dots on route */
-  L.circleMarker(route[0],{radius:6,color:'#fff',weight:2.5,fillColor:'#0B2A4A',fillOpacity:1}).addTo(map);
-  L.circleMarker(route[route.length-1],{radius:6,color:'#fff',weight:2.5,fillColor:'#14C4E8',fillOpacity:1}).addTo(map);
+  /* Route Strava entre les entreprises bretonnes */
+  var route=[
+    [48.1456,-1.8364],[48.1350,-1.8100],[48.1250,-1.7800],
+    [48.1150,-1.7500],[48.1047,-1.9116],[48.1200,-1.7800],
+    [48.1500,-1.7100],[48.1650,-1.6700],[48.1817,-1.6350]
+  ];
+  L.polyline(route,{color:'#fff',weight:5,opacity:0.85,lineCap:'round',lineJoin:'round'}).addTo(map);
+  L.polyline(route,{color:'#14C4E8',weight:3,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(map);
+  L.circleMarker(route[0],{radius:5,color:'#fff',weight:2,fillColor:'#0B2A4A',fillOpacity:1}).addTo(map);
+  L.circleMarker(route[route.length-1],{radius:5,color:'#fff',weight:2,fillColor:'#14C4E8',fillOpacity:1}).addTo(map);
+
+  /* Bouton recentrer Bretagne */
+  var btn=L.control({position:'topleft'});
+  btn.onAdd=function(){
+    var d=L.DomUtil.create('div','leaflet-bar');
+    d.innerHTML='<a href="#" title="Voir la Bretagne" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;background:#fff;font-size:16px;text-decoration:none;color:#0B2A4A;font-weight:700;border-radius:4px">35</a>';
+    d.onclick=function(e){e.preventDefault();e.stopPropagation();map.flyTo([48.12,-1.75],11,{duration:1});};
+    return d;
+  };
+  btn.addTo(map);
 
   window._gmap=map;
   [0,250,600,1200].forEach(function(t){setTimeout(function(){try{map.invalidateSize();}catch(e){}},t);});
