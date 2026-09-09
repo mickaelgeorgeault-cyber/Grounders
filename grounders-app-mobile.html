@@ -181,29 +181,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wallet-pay{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:14px;background:linear-gradient(135deg,#14C4E8 0%,#0EA8CC 100%);color:#0B2A4A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(20,196,232,.3)}
 .wallet-pay:active{transform:scale(.97)}
 
-/* promo banner spotify-style */
-.promo-banner{position:relative;background:linear-gradient(135deg,#14C4E8 0%,#0EA8CC 30%,#0B2A4A 100%);color:#fff;padding:14px 40px 14px 16px;font-size:13px;line-height:1.45;overflow:hidden;animation:promoIn .5s cubic-bezier(.2,.8,.2,1)}
+/* promo banner */
+.promo-banner{position:relative;background:var(--gold-d);color:#fff;padding:20px 18px 18px;overflow:hidden;animation:promoIn .5s cubic-bezier(.2,.8,.2,1)}
 .promo-banner.hidden{display:none}
-.promo-glow{position:absolute;top:-20px;left:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.1)}
-.promo-glow2{position:absolute;bottom:-30px;right:40px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.06)}
+.promo-glow{position:absolute;top:-50px;right:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(20,196,232,.18) 0%,transparent 70%)}
+.promo-glow2{position:absolute;bottom:-40px;left:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(143,217,242,.08) 0%,transparent 70%)}
 .promo-inner{position:relative;z-index:1}
-.promo-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.promo-logo svg{width:28px;height:28px}
-.promo-badge{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.1em;background:rgba(255,255,255,.18);padding:3px 9px;border-radius:20px}
-.promo-offer{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;line-height:1.2;margin-bottom:4px}
-.promo-offer em{font-style:normal;color:#14C4E8;text-shadow:0 0 12px rgba(20,196,232,.4)}
-.promo-price{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:10px}
-.promo-price b{color:#fff;font-weight:700}
-.promo-cta-row{display:flex;align-items:center;gap:10px}
-.promo-cta{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;padding:9px 18px;border-radius:999px;background:#fff;color:#0B2A4A;border:none;cursor:pointer;transition:transform .15s}
+.promo-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.promo-logo svg{width:32px;height:32px}
+.promo-badge{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.1em;background:var(--gold);color:var(--gold-d);padding:4px 12px;border-radius:20px}
+.promo-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1.15;margin-bottom:6px}
+.promo-title em{font-style:normal;color:var(--gold)}
+.promo-price{font-size:14px;color:var(--gold-l);margin-bottom:14px;line-height:1.4}
+.promo-price b{color:#fff;font-weight:700;font-size:16px}
+.promo-cta-row{display:flex;align-items:center;gap:12px}
+.promo-cta{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;padding:12px 24px;border-radius:14px;background:var(--gold);color:var(--gold-d);border:none;cursor:pointer;transition:transform .15s;box-shadow:0 4px 16px rgba(20,196,232,.25)}
 .promo-cta:active{transform:scale(.95)}
-.promo-sub{font-size:11px;color:rgba(255,255,255,.55);font-style:italic}
-.promo-close{position:absolute;top:10px;right:10px;z-index:2;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
-.promo-close:hover{background:rgba(255,255,255,.25)}
-@keyframes promoIn{from{opacity:0;max-height:0;padding-top:0;padding-bottom:0}to{opacity:1;max-height:200px}}
-.promo-question{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:8px}
-.promo-question svg{width:20px;height:20px;flex:0 0 20px;stroke:#14C4E8;stroke-width:2;fill:none}
-.promo-question span{font-size:12px;color:rgba(255,255,255,.85);font-style:italic}
+.promo-sub{font-size:12px;color:var(--gold-l);font-weight:500}
+.promo-close{position:absolute;top:12px;right:12px;z-index:2;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.promo-close:hover{background:rgba(255,255,255,.15);color:#fff}
+@keyframes promoIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.promo-divider{height:1px;background:rgba(143,217,242,.15);margin:14px 0}
+.promo-question{display:flex;align-items:flex-start;gap:10px}
+.promo-question svg{width:22px;height:22px;flex:0 0 22px;stroke:var(--gold);stroke-width:2;fill:none;margin-top:1px}
+.promo-question span{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--gold-l);line-height:1.35}
 
 /* profile */
 .pf-top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
@@ -1408,15 +1409,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <button class="promo-close" onclick="closePromo()" aria-label="Fermer">✕</button>
     <div class="promo-inner">
       <div class="promo-top">
-        <div class="promo-logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#fff"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg></div>
+        <div class="promo-logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#8FD9F2"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg></div>
         <span class="promo-badge">Entreprises</span>
       </div>
-      <div class="promo-offer"><em>3 mois offerts</em> avant abonnement</div>
-      <div class="promo-price">Puis <b>50 € / mois</b> · Sans engagement · Annulable à tout moment</div>
+      <div class="promo-title"><em>3 mois offerts</em><br>avant abonnement</div>
+      <div class="promo-price">Puis <b>50 € / mois</b><br>Sans engagement · Annulable à tout moment</div>
       <div class="promo-cta-row">
         <button class="promo-cta" onclick="toast('Demande envoyée — on vous recontacte !')">Essayer gratuitement</button>
         <span class="promo-sub">Offre limitée</span>
       </div>
+      <div class="promo-divider"></div>
       <div class="promo-question">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <span>Et vous, combien êtes-vous prêt à payer pour recevoir un ground ?</span>
