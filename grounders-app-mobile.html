@@ -639,6 +639,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .fiche-ul li::before{content:'✓';position:absolute;left:0;color:#14C4E8;font-weight:800}
 .fiche-cta{flex:0 0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--hair);background:var(--paper)}
 .fiche-open{color:var(--gold-d);font-weight:700;cursor:pointer;white-space:nowrap}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-item.open .faq-answer{max-height:200px!important}
 </style>
 <style>/* required styles */
 
@@ -1360,8 +1362,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
       <div class="brand"><b>grounders</b><span>We are all grounders</span></div>
     </div>
-    <button class="av" onclick="show('profil')" aria-label="Mon profil">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+    <button class="av" onclick="show('contact')" aria-label="Contact">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     </button>
   </div>
 
@@ -1429,12 +1431,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <section class="screen" id="s-deals">
       <div class="eyebrow">Le terrain de jeu</div>
       <div class="h1" style="display:flex;align-items:center;gap:8px">Playground <span class="cnt" id="pg-count2">—</span></div>
-      <p class="sub" style="margin:6px 0 12px">Choisissez un deal et créez vos grounds. La commission tombe quand le ground devient client.</p>
+      <p class="sub" style="margin:6px 0 12px">Choisissez un deal et créez vos grounds. La commission en euros tombe quand le ground devient client.</p>
       <div class="filters" id="filters">
         <select class="fchip" id="fl-date" onchange="renderDeals()"><option value="recent">Date ↓ récents</option><option value="old">Date ↑ anciens</option></select>
         <select class="fchip" id="fl-dept" onchange="renderDeals()"><option value="">Département</option></select>
         <select class="fchip" id="fl-marche" onchange="renderDeals()"><option value="">Marché</option></select>
-        <select class="fchip" id="fl-bonus" onchange="renderDeals()"><option value="0">Bonus</option><option value="30">≥ 30 pts</option><option value="50">≥ 50 pts</option><option value="80">≥ 80 pts</option></select>
+        <select class="fchip" id="fl-bonus" onchange="renderDeals()"><option value="0">Commission</option><option value="30">≥ 30 €</option><option value="50">≥ 50 €</option><option value="80">≥ 80 €</option></select>
         <button class="fchip toggle" id="fl-signe" onclick="this.classList.toggle('on');renderDeals()">Signé</button>
       </div>
       <div id="deals-list"></div>
@@ -1487,7 +1489,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="lab">Challenge principal</div>
         <h3>grounders 2022</h3>
       </div>
-      <p class="sub" style="margin:10px 2px">Chaque ground accepté rapporte <b>1 pt</b> (particulier) ou <b>5 pts</b> (entreprise). Un deal signé rapporte le nombre de points proposé par l'entreprise.</p>
+      <p class="sub" style="margin:10px 2px">Chaque ground accepté rapporte <b>1 €</b> (particulier) ou <b>5 €</b> (entreprise). Un deal signé rapporte la commission en euros proposée par l'entreprise.</p>
       <div class="card" id="lb1"></div>
 
       <div class="banner" style="background:var(--gold-d);margin-top:18px">
@@ -1540,47 +1542,77 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </section>
 
-    <!-- PROFIL -->
-    <section class="screen" id="s-profil">
+    <!-- CONTACT -->
+    <section class="screen" id="s-contact">
       <button class="back" onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Accueil</button>
-      <div class="pf-top">
-        <div class="pf-av"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></div>
-        <div><div class="eyebrow" style="margin:0">Un profil vendeur</div><div class="disp" id="pf-name" style="font-weight:700;font-size:20px">Pierre M.</div><div class="sub" id="pf-handle" style="font-size:12px">@pierre_bh · Rennes</div></div>
-        <svg class="lock" viewBox="0 0 24 24" style="margin-left:auto;width:22px;height:22px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-      </div>
-      <p class="sub" style="font-size:12px;margin-bottom:12px">Profil visible par les recruteurs si vous l'autorisez ci-dessous.</p>
+      <div class="eyebrow">Besoin d'aide ?</div>
+      <div class="h1">Contact</div>
+      <p class="sub" style="margin:6px 0 16px">Une question, un souci technique ou un partenariat ? On est là pour vous.</p>
 
-      <div class="card">
-        <div class="eyebrow">Informations</div>
-        <div class="pf-list">
-          <div><span class="k">Nom / Prénom</span><span class="v" id="pf-nomprenom">Martin · Pierre</span></div>
-          <div><span class="k">Ville</span><span class="v" id="pf-ville">Rennes</span></div>
-          <div><span class="k">Date de naissance</span><span class="v">14/03/1988</span></div>
-          <div><span class="k">Niveau d'étude</span><span class="v">Bac +5</span></div>
-          <div><span class="k">Profession</span><span class="v">Commercial B2B</span></div>
-          <div><span class="k">LinkedIn</span><span class="v" style="color:var(--gold-d)">/pierre-martin</span></div>
+      <div class="card" style="display:flex;align-items:center;gap:14px;padding:18px;background:#25D366;color:#fff;border-radius:16px;cursor:pointer" onclick="window.open('https://wa.me/33612345678','_blank')">
+        <svg viewBox="0 0 24 24" style="width:36px;height:36px;flex:0 0 36px;fill:#fff"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.58c-.2 0-.52.07-.8.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34ZM12.05 21.8A9.8 9.8 0 0 1 7 20.5l-.36-.21-3.73.98.99-3.63-.24-.37a9.82 9.82 0 0 1-1.51-5.24c0-5.42 4.42-9.84 9.85-9.84a9.84 9.84 0 0 1 9.84 9.84c0 5.43-4.42 9.85-9.84 9.85l-.01-.08ZM12.05.2C5.56.2.25 5.5.25 12c0 2.08.55 4.1 1.59 5.88L0 24l6.3-1.65A11.8 11.8 0 0 0 12.05 24c6.49 0 11.8-5.3 11.8-11.8S18.54.2 12.05.2Z"/></svg>
+        <div><b style="font-size:16px">WhatsApp Grounders</b><div style="font-size:13px;opacity:.9;margin-top:2px">+33 6 12 34 56 78 · Réponse sous 24h</div></div>
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none;margin-left:auto"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </div>
+
+      <div class="card" style="margin-top:14px;display:flex;align-items:center;gap:14px;padding:18px;cursor:pointer" onclick="window.open('mailto:contact@grounders.fr')">
+        <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--gold-d);stroke-width:2;fill:none;flex:0 0 28px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div><b style="font-size:14px">contact@grounders.fr</b><div class="sub" style="font-size:12px;margin-top:2px">Pour les demandes par email</div></div>
+      </div>
+
+      <div class="h2" style="margin-top:24px">Questions fréquentes</div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Comment fonctionne Grounders ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Grounders est une communauté d'apporteurs d'affaires. Vous choisissez un deal dans le Playground, vous créez un « ground » (une mise en relation qualifiée) et vous êtes rémunéré en euros quand le ground devient client.</p>
         </div>
       </div>
 
-      <div class="card" style="margin-top:12px">
-        <div class="eyebrow">Profil ouvert · statistiques</div>
-        <div class="pf-list">
-          <div><span class="k">Classement challenges</span><span class="v">🥇 1ᵉʳ</span></div>
-          <div><span class="k">Grounds créés</span><span class="v" id="pf-leads">0</span></div>
-          <div><span class="k">Deals signés</span><span class="v">3</span></div>
-          <div><span class="k">Pipeline en cours</span><span class="v" id="pf-pipe">0 pts</span></div>
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Comment suis-je rémunéré ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Chaque deal affiche une commission en euros. Quand votre ground est « Gagné » (le prospect signe), la commission tombe dans votre porte-monnaie. Vous pouvez demander un virement depuis le Dashboard.</p>
         </div>
       </div>
 
-      <div class="card" style="margin-top:12px;display:flex;align-items:center;gap:12px">
-        <div style="flex:1"><b style="font-size:14px">Profil ouvert au recrutement</b><div class="sub" style="font-size:12px">Recevez des propositions et deals +</div></div>
-        <div class="toggle" id="recru">
-          <button class="on" onclick="recru(true,this)">Oui</button>
-          <button onclick="recru(false,this)">Non</button>
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Qu'est-ce qu'un « ground » ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Un ground est une mise en relation entre un prospect (une entreprise que vous connaissez) et un partenaire du Playground. Vous remplissez le formulaire avec les coordonnées du contact, et le partenaire prend le relais commercialement.</p>
         </div>
       </div>
 
-      <button class="btn ghost" onclick="logout()" style="margin-top:16px">Se déconnecter</button>
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Comment rejoindre un challenge ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Rendez-vous dans la section Challenges depuis l'accueil. Chaque challenge a une durée et un objectif (nombre de grounds signés). Les meilleurs apporteurs gagnent des dotations partenaires.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Comment contacter le support ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Envoyez-nous un message WhatsApp au +33 6 12 34 56 78 ou un email à contact@grounders.fr. Nous répondons sous 24 heures en jours ouvrés.</p>
+        </div>
+      </div>
+
+      <button class="btn ghost" onclick="logout()" style="margin-top:24px">Se déconnecter</button>
     </section>
 
     <!-- COACHING -->
@@ -1623,7 +1655,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <button data-s="deals" onclick="show('deals')"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V4h8a2 2 0 0 1 1.4.6l8.2 8.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg><span>Playground</span></button>
     <button data-s="leads" class="nav-logo" onclick="show('leads')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#3B82C4"/><path d="M6 8 12 3 18 8" stroke="#0B2A4A"/></svg></button>
     <button data-s="coaching" onclick="show('coaching')"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg><span>Coach</span></button>
-    <button data-s="profil" onclick="show('profil')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Compte</span></button>
+    <button data-s="contact" onclick="show('contact')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Contact</span></button>
   </nav>
 
   <!-- FICHE ENTREPRISE (modèle) -->
@@ -1745,7 +1777,7 @@ const DEALS = [
   {id:'elis',mono:'E',company:'Elis',who:'David Barthes',role:'Gérant Montfort sur Meu',pts:80,tier:null,dept:'35',marche:'Services',date:'2022-02-01',signe:false,
    desc:`Le groupe Elis est le leader Européen de la location de vêtements de travail, d'équipements d'hygiène et de linge de restauration. Toujours à la recherche de nouveaux clients Entreprise, nous serons heureux de transmettre à nos 6 attachés commerciaux rennais toute information utile.`,link:'fr.elis.com'},
   {id:'ob',mono:'OB',company:'L\u2019Orange bleue',who:'Julien Robert',role:'Gérant Montfort sur Meu',pts:50,tier:'or',dept:'35',marche:'Sport & Bien-être',date:'2022-02-10',signe:true,
-   desc:`L'Orange bleue est le leader français de la remise en forme, avec près de 300 clubs et un objectif de 1000. Je propose un deal simple : 50 points en contrepartie d'un parrainage de 2 ans sur le club de Montfort sur Meu.`,link:'lorangebleue.fr'},
+   desc:`L'Orange bleue est le leader français de la remise en forme, avec près de 300 clubs et un objectif de 1000. Je propose un deal simple : 50 € en contrepartie d'un parrainage de 2 ans sur le club de Montfort sur Meu.`,link:'lorangebleue.fr'},
   {id:'crm',mono:'CR',company:'CRM Solutions',who:'Agence Strasbourg',role:'Éditeur logiciel',pts:30,tier:'arg',dept:'67',marche:'Logiciel',date:'2022-03-01',signe:false,
    desc:`Nous équipons les PME d'outils CRM sur-mesure. Tout lead d'entreprise cherchant à structurer sa relation client nous intéresse fortement sur le Grand Est.`,link:'crm-solutions.fr'},
   {id:'b3b',mono:'B3',company:'B3B',who:'Réseau Betton',role:'Négoce B2B',pts:40,tier:null,dept:'35',marche:'B2B / Négoce',date:'2022-02-20',signe:false,
@@ -1782,7 +1814,7 @@ async function saveLeads(){ if(!store) return; try{ await store.set('bh:leads', 
 async function loadLeads(){ if(!store) return; try{ const r=await store.get('bh:leads'); if(r&&r.value){ const p=JSON.parse(r.value); if(Array.isArray(p)&&p.length) leads=p; } }catch(e){} }
 
 /* ---------- NAV ---------- */
-const SCREENS=['home','deals','leads','challenges','dashboard','profil','coaching'];
+const SCREENS=['home','deals','leads','challenges','dashboard','contact','coaching'];
 function initReveal(){ var c=document.getElementById('carousel'); if(!c) return; var secs=c.querySelectorAll('.slide'); if(typeof IntersectionObserver!=='undefined'){ var o=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ if(es[i].isIntersecting) es[i].target.classList.add('inview'); else es[i].target.classList.remove('inview'); } }, {root:c,threshold:0.18}); for(var i=0;i<secs.length;i++) o.observe(secs[i]); } else { for(var i=0;i<secs.length;i++) secs[i].classList.add('inview'); } }
 function goPitch(){ var s=document.getElementById('i-splash'),p=document.getElementById('i-pitch'); if(s)s.classList.add('gone'); if(p)p.classList.add('on'); var c=document.getElementById('carousel'); if(c){ c.scrollTop=0; var sl=c.querySelectorAll('.slide'); for(var k=0;k<sl.length;k++){ if(k<2) sl[k].classList.add('inview'); } } }
 function setHello(){ var n=document.getElementById('hello-name'); if(n) n.textContent=(account&&account.prenom)?account.prenom:''; }
@@ -1793,7 +1825,6 @@ function show(name){
   document.getElementById('scroll').scrollTop=0;
   if(name==='home'){setTimeout(function(){try{initMap();if(window._gmap)window._gmap.invalidateSize();}catch(e){}},150);}
   if(name==='dashboard') renderDashboard();
-  if(name==='profil') renderProfilStats();
 }
 
 /* ---------- HOME ---------- */
@@ -1803,7 +1834,7 @@ function isFav(id){return FAVS.indexOf(id)>-1;}
 function saveFavs(){try{localStorage.setItem('grd_favs',JSON.stringify(FAVS));}catch(e){}}
 function toggleFav(id){var i=FAVS.indexOf(id); if(i>-1)FAVS.splice(i,1); else FAVS.push(id); saveFavs(); renderDeals(); renderHome(); toast(i>-1?'Retiré des favoris':'Ajouté à My favs ♥');}
 function entLabel(n){return n+' entreprise'+(n>1?'s':'');}
-function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${d.mono}</div><div class="info"><b>${d.company}</b><span>${d.role}</span></div><div class="go">${d.pts} pts ›</div></div>`;}
+function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${d.mono}</div><div class="info"><b>${d.company}</b><span>${d.role}</span></div><div class="go">${d.pts} € ›</div></div>`;}
 function uniq(a){var o=[],s={};a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x);}});return o;}
 function buildFilters(){
   var dept=document.getElementById('fl-dept'), marche=document.getElementById('fl-marche');
@@ -1923,7 +1954,7 @@ function renderDeals(){
       <div class="lk">En savoir plus · ${d.link}</div>
       <div class="foot">
         ${d.tier?`<button class="play" onclick="toast('▶︎ Vidéo du deal — démo')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>`:''}
-        <div class="chip"><span>${d.pts}</span><small>Points le deal</small>
+        <div class="chip"><span>${d.pts} €</span><small>Commission</small>
           <svg viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/></svg>
         </div>
         <button class="btn" style="width:auto;padding:11px 14px;background:#fff;color:#0B2A4A;border:1.5px solid var(--hair);margin-left:auto" onclick="event.stopPropagation();openFiche('${d.id}')">Fiche</button><button class="btn gold" style="width:auto;padding:11px 16px;margin-left:8px" onclick="openDeal('${d.id}')">Créer un ground</button>
@@ -1953,7 +1984,7 @@ function sendLead(){
   saveLeads();
   ['f-soc','f-nom','f-pre','f-adr','f-vil','f-cp','f-tel','f-mail','f-msg','f-date'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   rating=3; renderRate();
-  toast('Ground créé ! <b>+2 pts</b> (défi partenaire)');
+  toast('Ground créé ! Commission réservée (défi partenaire)');
   setTimeout(()=>show('dashboard'),900);
 }
 function val(id){ return (document.getElementById(id).value||'').trim(); }
@@ -1965,7 +1996,7 @@ function lbHTML(rows){
     return `<div class="lead-row">
       <div class="rk ${medal?'':'n'}">${medal?`<svg viewBox="0 0 24 24" style="fill:${['#D4AF37','#B7B7B7','#C88A4B'][i]}"><path d="M6 4h12v3a6 6 0 0 1-12 0Z"/><path d="M9 15h6v4H9z"/><path d="M8 21h8"/></svg>`:(i+1)}</div>
       <div class="nm ${r[2]?'me':''}">${r[0]}${r[2]?' · vous':''}</div>
-      <div class="pts">${r[1]}<small>pts</small></div>
+      <div class="pts">${r[1]}<small>€</small></div>
     </div>`;
   }).join('');
 }
@@ -2011,7 +2042,7 @@ function renderProfilStats(){
   const sent=leads.filter(l=>l.stt==='Envoyé').length + 12;
   const pipe=leads.filter(l=>l.stt==='En cours'||l.stt==='Envoyé'||l.stt==='Accepté').reduce((s,l)=>s+l.pts,0);
   document.getElementById('pf-leads').textContent=sent;
-  document.getElementById('pf-pipe').textContent=pipe+' pts';
+  document.getElementById('pf-pipe').textContent=pipe+' €';
 }
 function recru(yes,btn){
   btn.parentElement.querySelectorAll('button').forEach(b=>{b.classList.remove('on');b.classList.remove('no');});
