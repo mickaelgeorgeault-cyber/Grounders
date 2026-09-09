@@ -268,28 +268,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .orsep{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin:16px 0}
 .orsep::before,.orsep::after{content:"";flex:1;height:1px;background:var(--hair)}
 .howto{width:100%;height:380px;border:1px solid var(--hair);border-radius:16px;overflow:hidden;display:block;margin-top:6px;background:#fff}
-.fmap{position:relative;width:100%;height:280px;margin:10px auto 0;background:#dce8f0;border-radius:16px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 2px 10px rgba(80,64,24,.06);z-index:0;touch-action:pan-x pan-y}
-.fmap-inner{position:absolute;inset:0;overflow:hidden;cursor:grab}
-.fmap-inner:active{cursor:grabbing}
-.fmap-inner svg{display:block;transform-origin:0 0;transition:transform .25s ease}
-.fmap-zoom{position:absolute;bottom:10px;right:10px;display:flex;flex-direction:column;gap:4px;z-index:5}
-.fmap-zoom button{width:30px;height:30px;border-radius:8px;background:#fff;border:1px solid var(--hair);font-size:18px;font-weight:700;color:var(--gold-d);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
-.fmap-zoom button:active{background:var(--gold-wash)}
-.fmap-btn35{position:absolute;top:10px;left:10px;z-index:5;background:var(--gold-d);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;padding:6px 12px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-.fmap-btn35:active{opacity:.8}
-.leaflet-container{font-family:'Inter',system-ui,sans-serif;background:#dce8f0}.leaflet-bar a,.leaflet-control-attribution{color:var(--ink)}
-.fmap svg{position:absolute;inset:0;width:100%;height:100%}
-.fland{fill:#ECEAE1;stroke:#D3D0C4;stroke-width:0.5;stroke-linejoin:round}
-.froad2{fill:none;stroke:#fff;stroke-width:1.2;opacity:.7;stroke-linecap:round}
-.fpin{position:absolute;transform:translate(-50%,-100%)}
-.fpin i{position:relative;display:block;width:14px;height:14px;background:var(--gold);border-radius:50% 50% 50% 0;transform:rotate(45deg);box-shadow:0 2px 5px rgba(0,0,0,.3)}
-.fpin i::after{content:'';position:absolute;left:4px;top:4px;width:6px;height:6px;background:#fff;border-radius:50%}
+.fmap{position:relative;width:100%;height:280px;margin:10px auto 0;background:#dce8f0;border-radius:16px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 2px 10px rgba(80,64,24,.06);z-index:0}
+.fmap .leaflet-container{width:100%;height:100%;background:#dce8f0;border-radius:16px}
+.leaflet-container{font-family:'Inter',system-ui,sans-serif}.leaflet-bar a,.leaflet-control-attribution{color:var(--ink)}
 .gpin-wrap{background:none!important;border:none!important}
 .gpin-circle{width:38px;height:38px;background:#fff;border-radius:50%;padding:6px;box-shadow:0 2px 10px rgba(0,0,0,.3);margin:0 auto;cursor:pointer;transition:transform .2s;border:2.5px solid #14C4E8}
 .gpin-circle:hover{transform:scale(1.12)}
 .gpin-arrow{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid #14C4E8;margin:0 auto}
 .gpin-label{text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;color:#0B2A4A;background:#fff;border-radius:8px;padding:2px 7px;margin-top:2px;box-shadow:0 1px 5px rgba(0,0,0,.18);white-space:nowrap}
-.fpin b{position:absolute;bottom:calc(100% + 3px);left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;background:#fff;color:var(--ink);padding:2px 6px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.fmap-btn35{position:absolute;top:10px;left:10px;z-index:1000;background:var(--gold-d);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;padding:6px 12px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.fmap-btn35:active{opacity:.8}
 .nav .nav-logo{color:var(--gold)}
 .nav .nav-logo svg{width:34px;height:34px;stroke-width:2}
 .cnt{font-family:'Space Grotesk';font-weight:600;font-size:11px;color:var(--gold-d);background:var(--gold-wash);border:1px solid var(--hair);padding:2px 9px;border-radius:999px;white-space:nowrap}.seeall{margin-left:auto;font-size:12px;color:var(--gold-d);font-weight:700;cursor:pointer;font-family:'Inter'}.filters{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.fchip{flex:0 0 auto;font-family:'Inter';font-size:12px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--hair);border-radius:999px;padding:8px 12px;-webkit-appearance:none;appearance:none;cursor:pointer;outline:none}.fchip:focus{border-color:var(--gold)}.fchip.toggle.on{background:var(--gold);color:#fff;border-color:var(--gold)}.deal .top{display:flex;align-items:center;gap:10px}.deal .fav{margin-left:2px;background:none;border:none;cursor:pointer;padding:2px;color:#C9CCCF;line-height:0;align-self:flex-start}.deal .fav svg{width:23px;height:23px;fill:currentColor;stroke:none;transition:transform .15s}.deal .fav.on{color:#14C4E8}.deal .fav:active svg{transform:scale(1.25)}.empty{color:var(--muted);font-size:13px;text-align:center;padding:16px}
@@ -2168,204 +2156,51 @@ function recru(yes,btn){
 function initMap(){
   if(window._gmap) return;
   var el=document.getElementById('map'); if(!el) return;
+  el.innerHTML='<div id="leaflet-map" style="width:100%;height:100%;border-radius:16px"></div>';
 
-  /* Projection simple : lon/lat \u2192 x/y dans viewBox 0 0 600 560 */
-  function px(lon){return (lon-(-5.5))*600/(10-(-5.5));}
-  function py(lat){return (51.2-lat)*560/(51.2-41.3);}
-
-  /* Villes de France */
-  var cities=[
-    {n:'Paris',lat:48.856,lon:2.352,big:1},{n:'Lyon',lat:45.764,lon:4.835,big:1},
-    {n:'Marseille',lat:43.296,lon:5.369,big:1},{n:'Toulouse',lat:43.604,lon:1.444,big:1},
-    {n:'Bordeaux',lat:44.837,lon:-0.579,big:1},{n:'Lille',lat:50.629,lon:3.057,big:1},
-    {n:'Nantes',lat:47.218,lon:-1.553,big:1},{n:'Strasbourg',lat:48.573,lon:7.752,big:1},
-    {n:'Rennes',lat:48.117,lon:-1.677,big:1},{n:'Montpellier',lat:43.610,lon:3.876},
-    {n:'Nice',lat:43.710,lon:7.262},{n:'Brest',lat:48.390,lon:-4.486},
-    {n:'Rouen',lat:49.443,lon:1.099},{n:'Dijon',lat:47.322,lon:5.041},
-    {n:'Clermont-Fd',lat:45.777,lon:3.087},{n:'Grenoble',lat:45.188,lon:5.724},
-    {n:'Tours',lat:47.394,lon:0.685},{n:'Orl\u00e9ans',lat:47.902,lon:1.909},
-    {n:'Caen',lat:49.183,lon:-0.370},{n:'Metz',lat:49.119,lon:6.176},
-    {n:'Limoges',lat:45.833,lon:1.261},{n:'Poitiers',lat:46.580,lon:0.340},
-    {n:'Angers',lat:47.473,lon:-0.556},{n:'Le Mans',lat:48.003,lon:0.200},
-    {n:'Saint-Malo',lat:48.649,lon:-2.000},{n:'Vannes',lat:47.658,lon:-2.760},
-    {n:'Saint-Brieuc',lat:48.514,lon:-2.760},{n:'Lorient',lat:47.748,lon:-3.366},
-    {n:'Quimper',lat:47.997,lon:-4.102},{n:'Pau',lat:43.295,lon:-0.370},
-    {n:'Bayonne',lat:43.493,lon:-1.474},{n:'La Rochelle',lat:46.160,lon:-1.152},
-    {n:'Perpignan',lat:42.698,lon:2.895},{n:'Amiens',lat:49.894,lon:2.302},
-    {n:'Reims',lat:49.258,lon:3.933},{n:'Nancy',lat:48.692,lon:6.184},
-    {n:'Besan\u00e7on',lat:47.249,lon:6.018},{n:'Ajaccio',lat:41.919,lon:8.739},
-    {n:'Avignon',lat:43.949,lon:4.805},{n:'Saint-Gilles',lat:48.146,lon:-1.836,mark:1},
-    {n:'Montfort-s-M',lat:48.137,lon:-1.949,mark:1},{n:'Betton',lat:48.182,lon:-1.635,mark:1}
-  ];
-
-  /* Fleuves */
-  var rivers=[
-    [[47.28,-2.15],[47.22,-1.55],[47.27,-0.86],[47.38,0.68],[47.90,1.90],[47.85,2.80],[48.50,2.80],[48.85,2.35],[49.05,1.85],[49.44,1.10],[49.48,0.12]],
-    [[43.30,5.37],[43.60,4.80],[43.95,4.80],[44.73,4.73],[45.19,4.83],[45.76,4.84],[46.17,4.08],[46.80,3.43],[47.00,3.10]],
-    [[47.28,-2.15],[47.22,-1.55],[47.27,-0.86],[47.20,-0.06],[47.10,0.55],[47.38,0.68]],
-    [[44.84,-0.58],[44.84,-0.10],[44.55,0.23],[44.21,0.62],[43.86,1.15],[43.60,1.44]],
-    [[49.50,0.12],[49.20,0.40],[49.05,1.10],[49.12,1.85],[49.44,1.10]]
-  ];
-
-  /* France outline (simplified) */
-  var france='M'+px(-1.8)+','+py(48.64)+' L'+px(-4.79)+','+py(48.39)+' L'+px(-4.5)+','+py(47.99)+' L'+px(-3.4)+','+py(47.75)+' L'+px(-2.76)+','+py(47.65)+' L'+px(-2.85)+','+py(47.27)+' L'+px(-1.18)+','+py(46.15)+' L'+px(-1.47)+','+py(43.49)+' L'+px(-0.33)+','+py(43.30)+' L'+px(0.7)+','+py(42.7)+' L'+px(2.9)+','+py(42.43)+' L'+px(3.15)+','+py(42.44)+' L'+px(3.88)+','+py(43.57)+' L'+px(4.35)+','+py(43.4)+' L'+px(5.37)+','+py(43.30)+' L'+px(6.2)+','+py(43.1)+' L'+px(7.26)+','+py(43.71)+' L'+px(7.44)+','+py(44.15)+' L'+px(6.95)+','+py(44.36)+' L'+px(6.63)+','+py(45.07)+' L'+px(7.04)+','+py(45.92)+' L'+px(6.84)+','+py(46.42)+' L'+px(7.59)+','+py(47.59)+' L'+px(7.53)+','+py(47.78)+' L'+px(7.75)+','+py(48.57)+' L'+px(8.23)+','+py(48.97)+' L'+px(7.62)+','+py(49.05)+' L'+px(6.18)+','+py(49.46)+' L'+px(5.82)+','+py(49.55)+' L'+px(4.87)+','+py(49.79)+' L'+px(4.15)+','+py(49.98)+' L'+px(3.40)+','+py(50.34)+' L'+px(2.55)+','+py(51.09)+' L'+px(1.59)+','+py(50.95)+' L'+px(1.57)+','+py(50.20)+' L'+px(1.83)+','+py(49.96)+' L'+px(0.12)+','+py(49.48)+' L'+px(-0.79)+','+py(49.36)+' L'+px(-1.15)+','+py(49.36)+' L'+px(-1.25)+','+py(48.83)+' L'+px(-1.8)+','+py(48.64)+' Z';
-
-  /* Bretagne region */
-  var bretagne='M'+px(-1.8)+','+py(48.64)+' L'+px(-1.25)+','+py(48.45)+' L'+px(-1.18)+','+py(47.82)+' L'+px(-1.55)+','+py(47.22)+' L'+px(-2.76)+','+py(47.27)+' L'+px(-2.85)+','+py(47.65)+' L'+px(-3.4)+','+py(47.75)+' L'+px(-4.5)+','+py(47.99)+' L'+px(-4.79)+','+py(48.39)+' L'+px(-1.8)+','+py(48.64)+' Z';
-
-  /* Corse */
-  var corse='M'+px(9.01)+','+py(43.01)+' L'+px(9.40)+','+py(42.60)+' L'+px(9.56)+','+py(42.15)+' L'+px(9.28)+','+py(41.38)+' L'+px(8.58)+','+py(41.38)+' L'+px(8.80)+','+py(42.00)+' L'+px(8.55)+','+py(42.35)+' L'+px(8.57)+','+py(42.96)+' L'+px(9.01)+','+py(43.01)+' Z';
-
-  var svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560">'
-    +'<rect width="600" height="560" fill="#dce8f0"/>';
-
-  /* Mer */
-  svg+='<rect width="600" height="560" fill="#d4e6f0"/>';
-
-  /* France terrain */
-  svg+='<path d="'+france+'" fill="#f0ede6" stroke="#c8c3b8" stroke-width="1.2"/>';
-  svg+='<path d="'+corse+'" fill="#f0ede6" stroke="#c8c3b8" stroke-width="1.2"/>';
-
-  /* Bretagne highlight */
-  svg+='<path d="'+bretagne+'" fill="#e8f4e8" stroke="#a0c4a0" stroke-width="0.8" opacity="0.6"/>';
-
-  /* Fleuves */
-  rivers.forEach(function(r){
-    var d='M'; r.forEach(function(p,i){d+=(i?'L':'')+(px(p[1]).toFixed(1))+','+(py(p[0]).toFixed(1));});
-    svg+='<path d="'+d+'" fill="none" stroke="#a8cfe0" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>';
-  });
-
-  /* Villes */
-  cities.forEach(function(c){
-    var cx=px(c.lon),cy=py(c.lat);
-    if(c.mark) return;
-    if(c.big){
-      svg+='<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="3.5" fill="#0B2A4A" opacity="0.5"/>';
-      svg+='<text x="'+(cx+6).toFixed(1)+'" y="'+(cy+4).toFixed(1)+'" font-family="Space Grotesk,Inter,sans-serif" font-size="9" font-weight="700" fill="#0B2A4A" opacity="0.65">'+c.n+'</text>';
-    }else{
-      svg+='<circle cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" r="2" fill="#0B2A4A" opacity="0.3"/>';
-      svg+='<text x="'+(cx+5).toFixed(1)+'" y="'+(cy+3.5).toFixed(1)+'" font-family="Inter,sans-serif" font-size="7" fill="#0B2A4A" opacity="0.4">'+c.n+'</text>';
-    }
-  });
-
-  /* Route Strava entre entreprises */
-  var rte=[[48.146,-1.836],[48.140,-1.810],[48.135,-1.780],[48.137,-1.949],[48.140,-1.780],[48.155,-1.720],[48.170,-1.670],[48.182,-1.635]];
-  var rd='M'; rte.forEach(function(p,i){rd+=(i?'L':'')+px(p[1]).toFixed(1)+','+py(p[0]).toFixed(1);});
-  svg+='<path d="'+rd+'" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>';
-  svg+='<path d="'+rd+'" fill="none" stroke="#14C4E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-  svg+='<circle cx="'+px(rte[0][1]).toFixed(1)+'" cy="'+py(rte[0][0]).toFixed(1)+'" r="3.5" fill="#0B2A4A" stroke="#fff" stroke-width="1.5"/>';
-  svg+='<circle cx="'+px(rte[rte.length-1][1]).toFixed(1)+'" cy="'+py(rte[rte.length-1][0]).toFixed(1)+'" r="3.5" fill="#14C4E8" stroke="#fff" stroke-width="1.5"/>';
-
-  svg+='</svg>';
-
-  /* Construire le DOM */
-  var inner=document.createElement('div');
-  inner.className='fmap-inner';
-  inner.innerHTML=svg;
-  el.innerHTML='';
-  el.appendChild(inner);
-
-  /* Pins entreprises (HTML overlay) */
   var companies=[
-    {lat:48.146,lon:-1.836,name:'Elis',sub:'Saint-Gilles',id:'elis'},
-    {lat:48.137,lon:-1.949,name:"L'Orange bleue",sub:'Montfort-sur-Meu',id:'ob'},
-    {lat:48.573,lon:7.752,name:'CRM Solutions',sub:'Strasbourg',id:'crm'},
-    {lat:48.182,lon:-1.635,name:'B3B',sub:'Betton',id:'b3b'}
+    {lat:48.146,lng:-1.836,name:'Elis',sub:'Saint-Gilles (35)',id:'elis'},
+    {lat:48.137,lng:-1.949,name:"L'Orange bleue",sub:'Montfort-sur-Meu (35)',id:'ob'},
+    {lat:48.573,lng:7.752,name:'CRM Solutions',sub:'Strasbourg (67)',id:'crm'},
+    {lat:48.182,lng:-1.635,name:'B3B',sub:'Betton (35)',id:'b3b'}
   ];
 
   var gSvg='<svg viewBox="0 0 100 44" style="width:100%;height:100%"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  var pinLayer=document.createElement('div');
-  pinLayer.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:3';
-  el.appendChild(pinLayer);
+  var map=L.map('leaflet-map',{zoomControl:false,attributionControl:false}).setView([48.15,-1.75],9);
 
-  /* Zoom state */
-  var zoom=1, panX=0, panY=0, svgEl=inner.querySelector('svg');
-  var W=600, H=560;
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:18,minZoom:5,
+    attribution:'&copy; OpenStreetMap'
+  }).addTo(map);
 
-  function updateTransform(){
-    svgEl.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')';
-    updatePins();
-  }
+  L.control.zoom({position:'bottomright'}).addTo(map);
 
-  function updatePins(){
-    pinLayer.innerHTML='';
-    companies.forEach(function(c){
-      var sx=px(c.lon)*zoom+panX;
-      var sy=py(c.lat)*zoom+panY;
-      var elW=el.clientWidth, elH=el.clientHeight;
-      var rx=sx/elW*100, ry=sy/elH*100;
-      if(sx<-30||sx>elW+30||sy<-30||sy>elH+30) return;
-      var pin=document.createElement('div');
-      pin.style.cssText='position:absolute;left:'+sx+'px;top:'+sy+'px;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;z-index:4';
-      var sz=Math.max(28,Math.min(40,28*zoom));
-      pin.innerHTML='<div style="width:'+sz+'px;height:'+sz+'px;background:#fff;border-radius:50%;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid #14C4E8">'+gSvg+'</div>'
-        +'<div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid #14C4E8;margin:0 auto"></div>'
-        +'<div style="text-align:center;font-family:Space Grotesk,sans-serif;font-weight:700;font-size:'+(zoom>1.5?'11':'9')+'px;color:#0B2A4A;background:#fff;border-radius:8px;padding:2px 6px;margin-top:1px;box-shadow:0 1px 4px rgba(0,0,0,.15);white-space:nowrap">'+c.name+'<br><span style="font-weight:500;font-size:'+(zoom>1.5?'9':'7')+'px;color:#6b7280">'+c.sub+'</span></div>';
-      pin.onclick=function(e){e.stopPropagation();openFiche(c.id);};
-      pinLayer.appendChild(pin);
-    });
-  }
+  var routeCoords=[[48.182,-1.635],[48.165,-1.720],[48.155,-1.760],[48.146,-1.836],[48.140,-1.880],[48.137,-1.949]];
+  L.polyline(routeCoords,{color:'#fff',weight:6,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(map);
+  L.polyline(routeCoords,{color:'#14C4E8',weight:3.5,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(map);
 
-  /* Zoom controls */
-  var zoomDiv=document.createElement('div');
-  zoomDiv.className='fmap-zoom';
-  zoomDiv.innerHTML='<button onclick="event.stopPropagation()">+</button><button onclick="event.stopPropagation()">\u2212</button>';
-  el.appendChild(zoomDiv);
-  var btns=zoomDiv.querySelectorAll('button');
-  btns[0].onclick=function(e){e.stopPropagation();zoomTo(zoom*1.5);};
-  btns[1].onclick=function(e){e.stopPropagation();zoomTo(zoom/1.5);};
+  companies.forEach(function(c){
+    var icon=L.divIcon({className:'gpin-wrap',html:'<div class="gpin-circle">'+gSvg+'</div><div class="gpin-arrow"></div><div class="gpin-label">'+c.name+'<br><span style="font-weight:500;font-size:8px;color:#6b7280">'+c.sub+'</span></div>',iconSize:[60,70],iconAnchor:[30,70]});
+    L.marker([c.lat,c.lng],{icon:icon}).addTo(map).on('click',function(){openFiche(c.id);});
+  });
 
-  function zoomTo(z,cx,cy){
-    var elW=el.clientWidth, elH=el.clientHeight;
-    if(!cx){cx=elW/2;cy=elH/2;}
-    var oldZ=zoom; z=Math.max(0.8,Math.min(8,z));
-    panX=cx-(cx-panX)*z/oldZ; panY=cy-(cy-panY)*z/oldZ;
-    zoom=z; clampPan(); updateTransform();
-  }
-
-  function clampPan(){
-    var elW=el.clientWidth, elH=el.clientHeight;
-    var mW=W*zoom, mH=H*zoom;
-    if(mW<=elW){panX=(elW-mW)/2;}else{panX=Math.min(0,Math.max(elW-mW,panX));}
-    if(mH<=elH){panY=(elH-mH)/2;}else{panY=Math.min(0,Math.max(elH-mH,panY));}
-  }
-
-  /* Bouton Bretagne */
   var btn35=document.createElement('button');
   btn35.className='fmap-btn35';
   btn35.textContent='Bretagne 35';
-  btn35.onclick=function(e){
-    e.stopPropagation();
-    var elW=el.clientWidth, elH=el.clientHeight;
-    zoom=4; panX=-(px(-1.85)*zoom-elW/2); panY=-(py(48.15)*zoom-elH/2);
-    clampPan(); updateTransform();
-  };
+  btn35.onclick=function(e){e.stopPropagation();e.preventDefault();map.flyTo([48.15,-1.75],10,{duration:0.8});};
   el.appendChild(btn35);
 
-  /* Touch / mouse drag */
-  var dragging=false, sx=0, sy=0, spx=0, spy=0;
-  inner.addEventListener('pointerdown',function(e){dragging=true;sx=e.clientX;sy=e.clientY;spx=panX;spy=panY;inner.setPointerCapture(e.pointerId);});
-  inner.addEventListener('pointermove',function(e){if(!dragging)return;panX=spx+(e.clientX-sx);panY=spy+(e.clientY-sy);clampPan();updateTransform();});
-  inner.addEventListener('pointerup',function(){dragging=false;});
-  inner.addEventListener('pointercancel',function(){dragging=false;});
+  var btnFr=document.createElement('button');
+  btnFr.className='fmap-btn35';
+  btnFr.style.left='auto';btnFr.style.right='10px';
+  btnFr.textContent='France';
+  btnFr.onclick=function(e){e.stopPropagation();e.preventDefault();map.flyTo([46.8,2.5],6,{duration:0.8});};
+  el.appendChild(btnFr);
 
-  /* Pinch zoom */
-  var lastDist=0;
-  el.addEventListener('touchstart',function(e){if(e.touches.length===2){lastDist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);}},{passive:true});
-  el.addEventListener('touchmove',function(e){if(e.touches.length===2){var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(lastDist>0){var r=d/lastDist;var cx=(e.touches[0].clientX+e.touches[1].clientX)/2-el.getBoundingClientRect().left;var cy=(e.touches[0].clientY+e.touches[1].clientY)/2-el.getBoundingClientRect().top;zoomTo(zoom*r,cx,cy);}lastDist=d;}},{passive:true});
-  el.addEventListener('touchend',function(){lastDist=0;},{passive:true});
-
-  /* Scroll wheel zoom */
-  el.addEventListener('wheel',function(e){e.preventDefault();var rect=el.getBoundingClientRect();var cx=e.clientX-rect.left,cy=e.clientY-rect.top;zoomTo(zoom*(e.deltaY<0?1.25:0.8),cx,cy);},{passive:false});
-
-  /* Init: scale SVG to fit container */
-  var elW=el.clientWidth, elH=el.clientHeight;
-  zoom=Math.min(elW/W,elH/H);
-  panX=(elW-W*zoom)/2; panY=(elH-H*zoom)/2;
-  updateTransform();
-
+  setTimeout(function(){map.invalidateSize();},200);
   window._gmap=true;
+  window._leafletMap=map;
 }
 
 /* ---------- PROMO BANNER ---------- */
