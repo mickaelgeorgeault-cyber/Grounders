@@ -1407,8 +1407,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
       <div class="brand"><b>grounders</b><span>We are all grounders</span></div>
     </div>
-    <button class="av" onclick="show('contact')" aria-label="Contact">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <button class="av" onclick="show('compte')" aria-label="Mon compte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </button>
   </div>
 
@@ -1615,6 +1615,50 @@ svg.leaflet-image-layer.leaflet-interactive path {
       </div>
     </section>
 
+    <!-- MON COMPTE -->
+    <section class="screen" id="s-compte">
+      <button class="back" onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Accueil</button>
+      <div class="eyebrow">Votre espace</div>
+      <div class="h1">Mon compte</div>
+
+      <div class="pf-top">
+        <div class="pf-av"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div>
+          <div style="font-size:17px;font-weight:700;color:var(--ink)" id="pf-name">—</div>
+          <div style="font-size:13px;color:var(--muted)" id="pf-handle">@—</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;display:flex;gap:0">
+        <div style="flex:1;text-align:center;padding:14px 0;border-right:1px solid var(--hair)">
+          <div style="font-family:'Space Grotesk';font-size:22px;font-weight:700;color:var(--gold)" id="pf-leads">0</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Grounds envoyés</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:14px 0">
+          <div style="font-family:'Space Grotesk';font-size:22px;font-weight:700;color:var(--gold)" id="pf-pipe">0 €</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px">Pipeline</div>
+        </div>
+      </div>
+
+      <div class="h2" style="margin-top:20px">Informations</div>
+      <div class="card pf-list" style="margin-top:8px">
+        <div><span class="k">Nom · Prénom</span><span class="v" id="pf-nomprenom">—</span></div>
+        <div><span class="k">Ville</span><span class="v" id="pf-ville">—</span></div>
+        <div><span class="k">Inscription</span><span class="v" id="pf-via">—</span></div>
+      </div>
+
+      <div class="h2" style="margin-top:20px">Recrutement</div>
+      <div class="card" style="margin-top:8px;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:13.5px;color:var(--ink)">Ouvert au recrutement</span>
+        <div class="toggle">
+          <button class="on" onclick="recru(true,this)">Oui</button>
+          <button onclick="recru(false,this)">Non</button>
+        </div>
+      </div>
+
+      <button class="btn ghost" onclick="logout()" style="margin-top:24px">Se déconnecter</button>
+    </section>
+
     <!-- CONTACT -->
     <section class="screen" id="s-contact">
       <button class="back" onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Accueil</button>
@@ -1685,7 +1729,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </div>
       </div>
 
-      <button class="btn ghost" onclick="logout()" style="margin-top:24px">Se déconnecter</button>
     </section>
 
     <!-- COACHING -->
@@ -1893,7 +1936,7 @@ async function saveLeads(){ if(!store) return; try{ await store.set('bh:leads', 
 async function loadLeads(){ if(!store) return; try{ const r=await store.get('bh:leads'); if(r&&r.value){ const p=JSON.parse(r.value); if(Array.isArray(p)&&p.length) leads=p; } }catch(e){} }
 
 /* ---------- NAV ---------- */
-const SCREENS=['home','deals','leads','challenges','dashboard','contact','coaching'];
+const SCREENS=['home','deals','leads','challenges','dashboard','contact','coaching','compte'];
 function initReveal(){ var c=document.getElementById('carousel'); if(!c) return; var secs=c.querySelectorAll('.slide'); if(typeof IntersectionObserver!=='undefined'){ var o=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ if(es[i].isIntersecting) es[i].target.classList.add('inview'); else es[i].target.classList.remove('inview'); } }, {root:c,threshold:0.18}); for(var i=0;i<secs.length;i++) o.observe(secs[i]); } else { for(var i=0;i<secs.length;i++) secs[i].classList.add('inview'); } }
 function goPitch(){ var s=document.getElementById('i-splash'),p=document.getElementById('i-pitch'); if(s)s.classList.add('gone'); if(p)p.classList.add('on'); var c=document.getElementById('carousel'); if(c){ c.scrollTop=0; var sl=c.querySelectorAll('.slide'); for(var k=0;k<sl.length;k++){ if(k<2) sl[k].classList.add('inview'); } } }
 function setHello(){ var n=document.getElementById('hello-name'); if(n) n.textContent=(account&&account.prenom)?account.prenom:''; }
@@ -2267,6 +2310,7 @@ function fillProfile(){
   document.getElementById('pf-handle').textContent='@'+(account.pseudo||'heros')+(account.ville?' · '+account.ville:'');
   document.getElementById('pf-nomprenom').textContent=(account.nom||'—')+' · '+(account.prenom||'—');
   document.getElementById('pf-ville').textContent=account.ville||'—';
+  var viaEl=document.getElementById('pf-via'); if(viaEl) viaEl.textContent=account.via==='linkedin'?'LinkedIn':'Email';
 }
 
 /* ---------- INIT ---------- */
