@@ -112,7 +112,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .deal{margin-bottom:12px}
 .deal .top{display:flex;align-items:center;gap:11px;margin-bottom:10px}
 .deal .lg{flex:0 0 auto;width:46px;height:46px;border-radius:11px;background:var(--gold-wash);border:1px solid var(--hair);
-  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;color:var(--gold-d);font-size:16px}
+  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;color:var(--gold-d);font-size:16px;overflow:hidden}
+.deal .lg svg,.mini-deal .lg svg{width:100%;height:100%;display:block;border-radius:11px}
 .deal .who b{font-size:14px;display:block}
 .deal .who span{font-size:12px;color:var(--muted)}
 .deal .desc{font-size:13px;color:#54514a;line-height:1.5;margin-bottom:10px}
@@ -169,6 +170,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wallet{display:flex;align-items:center;gap:12px;margin:6px 0 4px}
 .wallet .big{font-family:'Space Grotesk';font-weight:700;font-size:32px}
 .wallet .big small{font-size:14px;color:var(--muted);font-weight:500}
+.wallet-hero{margin-top:14px;background:linear-gradient(135deg,#0B2A4A 0%,#0E3A5E 40%,#0F4570 100%);color:#fff;border-radius:20px;padding:24px 22px 20px;position:relative;overflow:hidden;border:1px solid rgba(20,196,232,.15)}
+.wallet-glow{position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(20,196,232,.2) 0%,transparent 70%)}
+.wallet-icon{width:44px;height:44px;border-radius:14px;background:rgba(20,196,232,.12);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.wallet-icon svg{width:24px;height:24px}
+.wallet-label{font-size:12px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.04em;text-transform:uppercase}
+.wallet-amount{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:38px;margin:4px 0 2px;line-height:1.1;letter-spacing:-.02em}
+.wallet-detail{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:16px}
+.wallet-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:16px}
+.wallet-pay{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:14px;background:linear-gradient(135deg,#14C4E8 0%,#0EA8CC 100%);color:#0B2A4A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(20,196,232,.3)}
+.wallet-pay:active{transform:scale(.97)}
 
 /* profile */
 .pf-top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
@@ -1431,12 +1442,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <section class="screen" id="s-deals">
       <div class="eyebrow">Le terrain de jeu</div>
       <div class="h1" style="display:flex;align-items:center;gap:8px">Playground <span class="cnt" id="pg-count2">—</span></div>
-      <p class="sub" style="margin:6px 0 12px">Choisissez un deal et créez vos grounds. La commission en euros tombe quand le ground devient client.</p>
+      <p class="sub" style="margin:6px 0 12px">Choisissez un deal et créez vos grounds. Le bonus tombe quand le ground devient client.</p>
       <div class="filters" id="filters">
         <select class="fchip" id="fl-date" onchange="renderDeals()"><option value="recent">Date ↓ récents</option><option value="old">Date ↑ anciens</option></select>
         <select class="fchip" id="fl-dept" onchange="renderDeals()"><option value="">Département</option></select>
         <select class="fchip" id="fl-marche" onchange="renderDeals()"><option value="">Marché</option></select>
-        <select class="fchip" id="fl-bonus" onchange="renderDeals()"><option value="0">Commission</option><option value="30">≥ 30 €</option><option value="50">≥ 50 €</option><option value="80">≥ 80 €</option></select>
+        <select class="fchip" id="fl-bonus" onchange="renderDeals()"><option value="0">Bonus</option><option value="30">≥ 30 €</option><option value="50">≥ 50 €</option><option value="80">≥ 80 €</option></select>
         <button class="fchip toggle" id="fl-signe" onclick="this.classList.toggle('on');renderDeals()">Signé</button>
       </div>
       <div id="deals-list"></div>
@@ -1473,9 +1484,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="rate" id="rate"></div>
         <div class="ratelab"><span>Faible</span><span>Fort</span></div>
       </div>
-      <button class="btn gold" onclick="sendLead()" style="margin-top:6px">
-        <svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:#fff;stroke-width:2;fill:none"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4Z"/></svg>
-        Créer le ground
+      <button class="btn gold" onclick="sendLead()" style="margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#fff"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg>
+        <span style="font-family:'Space Grotesk';font-weight:700;font-size:15px">Envoyer le ground</span>
       </button>
     </section>
 
@@ -1489,7 +1500,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <div class="lab">Challenge principal</div>
         <h3>grounders 2022</h3>
       </div>
-      <p class="sub" style="margin:10px 2px">Chaque ground accepté rapporte <b>1 €</b> (particulier) ou <b>5 €</b> (entreprise). Un deal signé rapporte la commission en euros proposée par l'entreprise.</p>
+      <p class="sub" style="margin:10px 2px">Chaque ground accepté rapporte <b>1 €</b> (particulier) ou <b>5 €</b> (entreprise). Un deal signé rapporte le bonus en euros proposé par l'entreprise.</p>
       <div class="card" id="lb1"></div>
 
       <div class="banner" style="background:var(--gold-d);margin-top:18px">
@@ -1498,7 +1509,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <h3>L'Orange bleue · Fitness</h3>
         <div style="font-size:12px;opacity:.85;margin-top:5px">01 Février → 31 Mai 2022</div>
       </div>
-      <p class="sub" style="margin:10px 2px">Dans ce game, chaque ground créé rapporte <b>2 points</b>.</p>
+      <p class="sub" style="margin:10px 2px">Dans ce game, chaque ground créé rapporte <b>2 € de bonus</b>.</p>
       <div class="card" id="lb2"></div>
     </section>
 
@@ -1507,11 +1518,19 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="eyebrow">Votre activité</div>
       <div class="h1">Cockpit</div>
 
-      <div class="card" style="margin-top:14px;background:var(--ink);color:#fff;border:none">
-        <div style="font-size:12px;opacity:.75;font-weight:600">Mon porte-monnaie</div>
-        <div class="wallet"><div class="big disp" id="wallet">0 €</div></div>
-        <div id="wallet-sub" style="font-size:11px;opacity:.7;margin:-4px 0 10px"></div>
-        <button class="btn gold" onclick="pay()">Me faire payer</button>
+      <div class="wallet-hero">
+        <div class="wallet-glow"></div>
+        <div class="wallet-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#14C4E8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 10h20"/><circle cx="17" cy="15" r="1.5" fill="#14C4E8" stroke="none"/></svg>
+        </div>
+        <div class="wallet-label">Mon porte-monnaie</div>
+        <div class="wallet-amount disp" id="wallet">0 €</div>
+        <div class="wallet-detail" id="wallet-sub"></div>
+        <div class="wallet-divider"></div>
+        <button class="wallet-pay" onclick="pay()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Me faire payer
+        </button>
       </div>
 
       <div class="card" style="margin-top:12px">
@@ -1578,7 +1597,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
         </div>
         <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
-          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Chaque deal affiche une commission en euros. Quand votre ground est « Gagné » (le prospect signe), la commission tombe dans votre porte-monnaie. Vous pouvez demander un virement depuis le Dashboard.</p>
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Chaque deal affiche un bonus en euros. Quand votre ground est « Gagné » (le prospect signe), le bonus tombe dans votre porte-monnaie. Vous pouvez demander un virement depuis le Dashboard.</p>
         </div>
       </div>
 
@@ -1773,6 +1792,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 <script>
 /* ---------- DATA ---------- */
+const DEAL_LOGOS = {
+  'elis':'<svg viewBox="0 0 46 46"><rect width="46" height="46" rx="11" fill="#3AA935"/><text x="23" y="29" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="15">elis</text></svg>',
+  'ob':'<svg viewBox="0 0 46 46"><rect width="46" height="46" rx="11" fill="#fff" stroke="#E8E5DE"/><circle cx="15" cy="25" r="7.5" fill="none" stroke="#1B2A4A" stroke-width="1.6"/><line x1="15" y1="17.5" x2="15" y2="32.5" stroke="#1B2A4A" stroke-width=".9"/><line x1="7.5" y1="25" x2="22.5" y2="25" stroke="#1B2A4A" stroke-width=".9"/><circle cx="26" cy="29" r="5" fill="none" stroke="#1B2A4A" stroke-width="1.4"/><path d="M24 23q2.5-3 5.5-.5" stroke="#1B2A4A" stroke-width="1.2" fill="none"/><text x="23" y="14" text-anchor="middle" fill="#1B2A4A" font-family="Georgia,serif" font-weight="700" font-size="7">l\'Orange</text><text x="23" y="42" text-anchor="middle" fill="#1B2A4A" font-family="Georgia,serif" font-weight="700" font-size="7.5">bleue</text></svg>',
+  'crm':'<svg viewBox="0 0 46 46"><rect width="46" height="46" rx="11" fill="#0B2A4A"/><text x="23" y="29" text-anchor="middle" fill="#14C4E8" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="16">C</text></svg>',
+  'b3b':'<svg viewBox="0 0 46 46"><rect width="46" height="46" rx="11" fill="#3B82C4"/><text x="23" y="30" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="15">B3B</text></svg>'
+};
 const DEALS = [
   {id:'elis',mono:'E',company:'Elis',who:'David Barthes',role:'Gérant Montfort sur Meu',pts:80,tier:null,dept:'35',marche:'Services',date:'2022-02-01',signe:false,
    desc:`Le groupe Elis est le leader Européen de la location de vêtements de travail, d'équipements d'hygiène et de linge de restauration. Toujours à la recherche de nouveaux clients Entreprise, nous serons heureux de transmettre à nos 6 attachés commerciaux rennais toute information utile.`,link:'fr.elis.com'},
@@ -1834,7 +1859,7 @@ function isFav(id){return FAVS.indexOf(id)>-1;}
 function saveFavs(){try{localStorage.setItem('grd_favs',JSON.stringify(FAVS));}catch(e){}}
 function toggleFav(id){var i=FAVS.indexOf(id); if(i>-1)FAVS.splice(i,1); else FAVS.push(id); saveFavs(); renderDeals(); renderHome(); toast(i>-1?'Retiré des favoris':'Ajouté à My favs ♥');}
 function entLabel(n){return n+' entreprise'+(n>1?'s':'');}
-function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${d.mono}</div><div class="info"><b>${d.company}</b><span>${d.role}</span></div><div class="go">${d.pts} € ›</div></div>`;}
+function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div><div class="info"><b>${d.company}</b><span>${d.role}</span></div><div class="go">${d.pts} € ›</div></div>`;}
 function uniq(a){var o=[],s={};a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x);}});return o;}
 function buildFilters(){
   var dept=document.getElementById('fl-dept'), marche=document.getElementById('fl-marche');
@@ -1845,7 +1870,7 @@ function buildFilters(){
 function leadEuros(l){ if(l.stt==='Gagné') return 15+l.pts; if(l.stt==='Accepté'||l.stt==='En cours') return 15; return 0; }
 function euro(n){ return (Math.round(n)).toLocaleString('fr-FR')+' \u20ac'; }
 var FICHES={
-  'ob':{logo:'<svg viewBox="0 0 76 76"><defs><clipPath id="fobc"><rect width="76" height="76" rx="16"/></clipPath></defs><g clip-path="url(#fobc)"><rect x="0" width="38" height="76" fill="#F28C00"/><rect x="38" width="38" height="76" fill="#0095D6"/></g><text x="38" y="47" text-anchor="middle" fill="#fff" font-family="Space Grotesk,Inter,sans-serif" font-weight="700" font-size="24">ob</text></svg>',name:"L'Orange bleue",cat:"Fitness & remise en forme · Rennes",web:"https://www.lorangebleue.fr",li:"https://www.linkedin.com/company/l-orange-bleue/",
+  'ob':{logo:'<svg viewBox="0 0 76 76"><rect width="76" height="76" rx="16" fill="#FFFFFF"/><circle cx="22" cy="42" r="11" fill="none" stroke="#1B2A4A" stroke-width="2"/><line x1="22" y1="31" x2="22" y2="53" stroke="#1B2A4A" stroke-width="1.2"/><line x1="11" y1="42" x2="33" y2="42" stroke="#1B2A4A" stroke-width="1.2"/><circle cx="35" cy="48" r="7" fill="none" stroke="#1B2A4A" stroke-width="1.8"/><path d="M33 41 Q36 36 40 40" stroke="#1B2A4A" stroke-width="1.5" fill="none"/><text x="38" y="24" text-anchor="middle" fill="#1B2A4A" font-family="serif" font-weight="700" font-size="10">l\'Orange</text><text x="38" y="66" text-anchor="middle" fill="#1B2A4A" font-family="serif" font-weight="700" font-size="11">bleue</text></svg>',name:"L'Orange bleue",cat:"Fitness & remise en forme · Rennes",web:"https://www.lorangebleue.fr",li:"https://www.linkedin.com/company/l-orange-bleue/",
     histo:"Fondée en 1996 près de Rennes par Thierry Marquer, l'enseigne a démocratisé le fitness à petit prix. C'est aujourd'hui un réseau de plus de 400 clubs en France et en Espagne, pour environ 400 000 adhérents. Siège à Rennes (OB Réseaux).",
     services:["Espaces musculation & cardio en accès libre 7j/7","Cours collectifs encadrés","Un coach diplômé toujours présent en salle","Programmes personnalisés"],
     model:"Réseau de franchises / licence de marque, positionné low-cost : abonnement mensuel accessible (à partir d'environ 30 €/4 semaines selon la formule et le club).",
@@ -1945,7 +1970,7 @@ function renderDeals(){
   dl.innerHTML=list.map(function(d){return `
     <div class="card deal">
       <div class="top">
-        <div class="lg">${d.mono}</div>
+        <div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div>
         <div class="who" style="flex:1"><b style="color:var(--gold-d)">${d.company}</b><span>${d.who} · ${d.role}${d.signe?' · <b style=\'color:#1E9E63\'>Signé</b>':''}</span></div>
         ${d.tier?`<span class="vtag ${d.tier}" onclick="event.stopPropagation();toast('Vidéo ${d.tier==='or'?'Or':'Argent'} — démo')">Vidéo ${d.tier==='or'?'Or':'Argent'}</span>`:''}
         <button class="fav ${isFav(d.id)?'on':''}" onclick="event.stopPropagation();toggleFav('${d.id}')" aria-label="Favori"><svg viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10.1-9.4C.4 8.9 1.6 5.4 5 5.4c2 0 3.3 1.2 4 2.4.7-1.2 2-2.4 4-2.4 3.4 0 4.6 3.5 3.1 6.2C19.6 16.3 12 21 12 21Z"/></svg></button>
@@ -1954,10 +1979,10 @@ function renderDeals(){
       <div class="lk">En savoir plus · ${d.link}</div>
       <div class="foot">
         ${d.tier?`<button class="play" onclick="toast('▶︎ Vidéo du deal — démo')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>`:''}
-        <div class="chip"><span>${d.pts} €</span><small>Commission</small>
+        <div class="chip"><span>${d.pts} €</span><small>Bonus</small>
           <svg viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/></svg>
         </div>
-        <button class="btn" style="width:auto;padding:11px 14px;background:#fff;color:#0B2A4A;border:1.5px solid var(--hair);margin-left:auto" onclick="event.stopPropagation();openFiche('${d.id}')">Fiche</button><button class="btn gold" style="width:auto;padding:11px 16px;margin-left:8px" onclick="openDeal('${d.id}')">Créer un ground</button>
+        <button class="btn" style="width:auto;padding:11px 14px;background:#fff;color:#0B2A4A;border:1.5px solid var(--hair);margin-left:auto" onclick="event.stopPropagation();openFiche('${d.id}')">Fiche</button><button class="btn gold ground-btn" style="width:auto;padding:8px 14px;margin-left:8px;display:flex;align-items:center;gap:6px" onclick="openDeal('${d.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#fff"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg><span style="font-weight:700;font-size:12px">Ground</span></button>
       </div>
     </div>`;}).join('');
 }
@@ -1984,7 +2009,7 @@ function sendLead(){
   saveLeads();
   ['f-soc','f-nom','f-pre','f-adr','f-vil','f-cp','f-tel','f-mail','f-msg','f-date'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   rating=3; renderRate();
-  toast('Ground créé ! Commission réservée (défi partenaire)');
+  toast('Ground créé ! Bonus réservé (défi partenaire)');
   setTimeout(()=>show('dashboard'),900);
 }
 function val(id){ return (document.getElementById(id).value||'').trim(); }
