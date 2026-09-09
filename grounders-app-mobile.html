@@ -181,6 +181,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wallet-pay{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:14px;background:linear-gradient(135deg,#14C4E8 0%,#0EA8CC 100%);color:#0B2A4A;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(20,196,232,.3)}
 .wallet-pay:active{transform:scale(.97)}
 
+/* promo banner spotify-style */
+.promo-banner{position:relative;background:linear-gradient(135deg,#14C4E8 0%,#0EA8CC 30%,#0B2A4A 100%);color:#fff;padding:14px 40px 14px 16px;font-size:13px;line-height:1.45;overflow:hidden;animation:promoIn .5s cubic-bezier(.2,.8,.2,1)}
+.promo-banner.hidden{display:none}
+.promo-glow{position:absolute;top:-20px;left:-20px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.1)}
+.promo-glow2{position:absolute;bottom:-30px;right:40px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.06)}
+.promo-inner{position:relative;z-index:1}
+.promo-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.promo-logo svg{width:28px;height:28px}
+.promo-badge{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.1em;background:rgba(255,255,255,.18);padding:3px 9px;border-radius:20px}
+.promo-offer{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;line-height:1.2;margin-bottom:4px}
+.promo-offer em{font-style:normal;color:#14C4E8;text-shadow:0 0 12px rgba(20,196,232,.4)}
+.promo-price{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:10px}
+.promo-price b{color:#fff;font-weight:700}
+.promo-cta-row{display:flex;align-items:center;gap:10px}
+.promo-cta{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;padding:9px 18px;border-radius:999px;background:#fff;color:#0B2A4A;border:none;cursor:pointer;transition:transform .15s}
+.promo-cta:active{transform:scale(.95)}
+.promo-sub{font-size:11px;color:rgba(255,255,255,.55);font-style:italic}
+.promo-close{position:absolute;top:10px;right:10px;z-index:2;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.promo-close:hover{background:rgba(255,255,255,.25)}
+@keyframes promoIn{from{opacity:0;max-height:0;padding-top:0;padding-bottom:0}to{opacity:1;max-height:200px}}
+.promo-question{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:8px}
+.promo-question svg{width:20px;height:20px;flex:0 0 20px;stroke:#14C4E8;stroke-width:2;fill:none}
+.promo-question span{font-size:12px;color:rgba(255,255,255,.85);font-style:italic}
+
 /* profile */
 .pf-top{display:flex;align-items:center;gap:14px;margin-bottom:6px}
 .pf-av{width:64px;height:64px;border-radius:50%;background:var(--gold-wash);border:1px solid var(--hair);display:flex;align-items:center;justify-content:center}
@@ -1378,6 +1402,28 @@ svg.leaflet-image-layer.leaflet-interactive path {
     </button>
   </div>
 
+  <div class="promo-banner" id="promo-banner">
+    <div class="promo-glow"></div>
+    <div class="promo-glow2"></div>
+    <button class="promo-close" onclick="closePromo()" aria-label="Fermer">✕</button>
+    <div class="promo-inner">
+      <div class="promo-top">
+        <div class="promo-logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#fff"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg></div>
+        <span class="promo-badge">Entreprises</span>
+      </div>
+      <div class="promo-offer"><em>3 mois offerts</em> avant abonnement</div>
+      <div class="promo-price">Puis <b>50 € / mois</b> · Sans engagement · Annulable à tout moment</div>
+      <div class="promo-cta-row">
+        <button class="promo-cta" onclick="toast('Demande envoyée — on vous recontacte !')">Essayer gratuitement</button>
+        <span class="promo-sub">Offre limitée</span>
+      </div>
+      <div class="promo-question">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Et vous, combien êtes-vous prêt à payer pour recevoir un ground ?</span>
+      </div>
+    </div>
+  </div>
+
   <div class="scroll" id="scroll">
 
     <!-- HOME -->
@@ -2093,6 +2139,15 @@ function initMap(){
   [0,250,600,1200].forEach(function(t){setTimeout(function(){try{map.invalidateSize();}catch(e){}},t);});
 }
 
+/* ---------- PROMO BANNER ---------- */
+function closePromo(){
+  var b=document.getElementById('promo-banner');
+  if(b){b.style.transition='max-height .35s ease,opacity .25s,padding .35s';b.style.maxHeight='0';b.style.opacity='0';b.style.paddingTop='0';b.style.paddingBottom='0';b.style.overflow='hidden';
+  setTimeout(function(){b.classList.add('hidden');},400);}
+  try{localStorage.setItem('grd_promo_closed','1');}catch(e){}
+}
+function checkPromo(){try{if(localStorage.getItem('grd_promo_closed')==='1'){var b=document.getElementById('promo-banner');if(b)b.classList.add('hidden');}}catch(e){}}
+
 /* ---------- MISC ---------- */
 let toastT;
 function toast(msg){
@@ -2152,6 +2207,7 @@ function fillProfile(){
 
 /* ---------- INIT ---------- */
 async function init(){
+  checkPromo();
   await loadLeads(); await loadAccount();
   renderHome(); renderDeals(); renderRate(); renderChallenges();
   const di=document.getElementById('f-date'); if(di){ di.valueAsDate=new Date(); }
