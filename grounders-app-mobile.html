@@ -1855,13 +1855,13 @@ const DEAL_LOGOS = {
   'b3b':'<svg viewBox="0 0 46 46"><rect width="46" height="46" rx="11" fill="#3B82C4"/><text x="23" y="30" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="15">B3B</text></svg>'
 };
 const DEALS = [
-  {id:'elis',mono:'E',company:'Elis',who:'David Barthes',role:'Gérant Montfort sur Meu',pts:80,tier:null,dept:'35',marche:'Services',date:'2022-02-01',signe:false,
+  {id:'elis',mono:'E',company:'Elis',who:'David Barthes',role:'Gérant Montfort sur Meu',pts:80,tier:null,dept:'35',marche:'Services',ville:'Saint-Gilles (35)',date:'2022-02-01',signe:false,
    desc:`Le groupe Elis est le leader Européen de la location de vêtements de travail, d'équipements d'hygiène et de linge de restauration. Toujours à la recherche de nouveaux clients Entreprise, nous serons heureux de transmettre à nos 6 attachés commerciaux rennais toute information utile.`,link:'fr.elis.com'},
-  {id:'ob',mono:'OB',company:'L\u2019Orange bleue',who:'Julien Robert',role:'Gérant Montfort sur Meu',pts:50,tier:'or',dept:'35',marche:'Sport & Bien-être',date:'2022-02-10',signe:true,
+  {id:'ob',mono:'OB',company:'L\u2019Orange bleue',who:'Julien Robert',role:'Gérant Montfort sur Meu',pts:50,tier:'or',dept:'35',marche:'Sport & Bien-être',ville:'Montfort-sur-Meu (35)',date:'2022-02-10',signe:true,
    desc:`L'Orange bleue est le leader français de la remise en forme, avec près de 300 clubs et un objectif de 1000. Je propose un deal simple : 50 € en contrepartie d'un parrainage de 2 ans sur le club de Montfort sur Meu.`,link:'lorangebleue.fr'},
-  {id:'crm',mono:'CR',company:'CRM Solutions',who:'Agence Strasbourg',role:'Éditeur logiciel',pts:30,tier:'arg',dept:'67',marche:'Logiciel',date:'2022-03-01',signe:false,
+  {id:'crm',mono:'CR',company:'CRM Solutions',who:'Agence Strasbourg',role:'Éditeur logiciel',pts:30,tier:'arg',dept:'67',marche:'Logiciel',ville:'Strasbourg (67)',date:'2022-03-01',signe:false,
    desc:`Nous équipons les PME d'outils CRM sur-mesure. Tout lead d'entreprise cherchant à structurer sa relation client nous intéresse fortement sur le Grand Est.`,link:'crm-solutions.fr'},
-  {id:'b3b',mono:'B3',company:'B3B',who:'Réseau Betton',role:'Négoce B2B',pts:40,tier:null,dept:'35',marche:'B2B / Négoce',date:'2022-02-20',signe:false,
+  {id:'b3b',mono:'B3',company:'B3B',who:'Réseau Betton',role:'Négoce B2B',pts:40,tier:null,dept:'35',marche:'B2B / Négoce',ville:'Betton (35)',date:'2022-02-20',signe:false,
    desc:`Réseau d'affaires local. Nous récompensons les mises en relation qualifiées vers des dirigeants de la métropole rennaise.`,link:'b3b.fr'},
 ];
 
@@ -1915,7 +1915,7 @@ function isFav(id){return FAVS.indexOf(id)>-1;}
 function saveFavs(){try{localStorage.setItem('grd_favs',JSON.stringify(FAVS));}catch(e){}}
 function toggleFav(id){var i=FAVS.indexOf(id); if(i>-1)FAVS.splice(i,1); else FAVS.push(id); saveFavs(); renderDeals(); renderHome(); toast(i>-1?'Retiré des favoris':'Ajouté à My favs ♥');}
 function entLabel(n){return n+' entreprise'+(n>1?'s':'');}
-function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div><div class="info"><b>${d.company}</b><span>${d.role}</span></div><div class="go">${d.pts} € ›</div></div>`;}
+function miniDeal(d){return `<div class="mini-deal" onclick="openDeal('${d.id}')"><div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div><div class="info"><b>${d.company}</b><span>${d.marche} · ${d.ville||''}</span></div><div class="go">›</div></div>`;}
 function uniq(a){var o=[],s={};a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x);}});return o;}
 function buildFilters(){
   var dept=document.getElementById('fl-dept'), marche=document.getElementById('fl-marche');
