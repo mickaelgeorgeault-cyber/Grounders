@@ -676,6 +676,45 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .fiche-ul{margin:0;padding:0}
 .fiche-ul li{list-style:none;font-size:14px;color:#0B2A4A;line-height:1.4;padding-left:19px;position:relative;margin-bottom:8px}
 .fiche-ul li::before{content:'✓';position:absolute;left:0;color:#14C4E8;font-weight:800}
+.fiche-pitch{background:var(--gold-d);color:#fff;border-radius:16px;margin:16px 16px 0;padding:20px}
+.fiche-pitch h4{font-family:'Space Grotesk';font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-l);margin:0 0 10px}
+.fiche-pitch p{font-size:14.5px;line-height:1.6;margin:0}
+.fiche-pitch p+p{margin-top:10px}
+.fiche-pitch b{color:var(--gold-l)}
+.fiche-pitch em{font-style:normal;color:#FF6B35;font-weight:600}
+.fiche-why{margin:14px 16px 0;background:#E8F5EE;border:1.5px solid #1E7D5A;border-radius:14px;padding:16px}
+.fiche-why h4{font-family:'Space Grotesk';font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#1E7D5A;margin:0 0 10px}
+.fiche-why li{list-style:none;font-size:13.5px;color:var(--ink);line-height:1.4;padding:6px 0;display:flex;align-items:flex-start;gap:8px}
+.fiche-why .wck{flex:0 0 20px;height:20px;background:#1E7D5A;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.fiche-why .wck svg{width:12px;height:12px}
+.fiche-args{margin:14px 16px 0}
+.fiche-args h4{font-family:'Space Grotesk';font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);border-left:3px solid #FF6B35;padding-left:9px;margin:0 0 10px}
+.fiche-args li{list-style:none;font-size:13.5px;color:var(--ink);padding:8px 0;display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--hair)}
+.fiche-args li:last-child{border-bottom:none}
+.fiche-args .ai{flex:0 0 26px;height:26px;background:var(--gold-wash);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.fiche-args .at b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
+.fiche-args .at span{font-size:12px;color:var(--muted)}
+.fiche-cibles{margin:14px 16px 0}
+.fiche-cibles h4{font-family:'Space Grotesk';font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);border-left:3px solid var(--gold);padding-left:9px;margin:0 0 10px}
+.fiche-cibles .tags{display:flex;flex-wrap:wrap;gap:6px}
+.fiche-cibles .tag{background:var(--gold-wash);color:var(--ink);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;border:1px solid var(--hair)}
+.fiche-bonus{margin:14px 16px 0;background:linear-gradient(135deg,#FF6B35,#E55A28);color:#fff;border-radius:14px;padding:16px;text-align:center}
+.fiche-bonus .fb-amount{font-family:'Space Grotesk';font-size:36px;font-weight:700;line-height:1}
+.fiche-bonus .fb-label{font-size:13px;font-weight:600;margin-top:2px}
+.fiche-bonus .fb-sub{font-size:11px;margin-top:6px;opacity:.8}
+.fiche-prix{margin:14px 16px 0}
+.fiche-prix h4{font-family:'Space Grotesk';font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);border-left:3px solid var(--gold);padding-left:9px;margin:0 0 10px}
+.fiche-prix .pg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fiche-prix .pc{background:var(--gold-wash);border-radius:10px;padding:12px;text-align:center}
+.fiche-prix .pc.feat{border:2px solid var(--gold)}
+.fiche-prix .pa{font-family:'Space Grotesk';font-size:22px;font-weight:700;color:var(--ink)}
+.fiche-prix .pa span{font-size:12px;font-weight:500}
+.fiche-prix .pp{font-size:11px;color:var(--muted);margin-top:2px}
+.fiche-prix .pn{font-size:11px;font-weight:700;color:var(--gold-d);margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+.fiche-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 16px 0}
+.fiche-stats .fs{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:12px;text-align:center}
+.fiche-stats .fv{font-family:'Space Grotesk';font-size:26px;font-weight:700;color:var(--gold);line-height:1.1}
+.fiche-stats .fl{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.3}
 .fiche-cta{flex:0 0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--hair);background:var(--paper)}
 .fiche-open{color:var(--gold-d);font-weight:700;cursor:pointer;white-space:nowrap}
 .fiche-map{position:relative;margin:16px 22px 0;border-radius:14px;overflow:hidden;cursor:pointer;border:1.5px solid var(--hair)}
@@ -2035,7 +2074,14 @@ var FICHES={
     loc:"Club Montfort-sur-Meu / Bédée — 2 rue de la Tannerie, ZI Montfort (35). Siège réseau à Rennes.",
     map:{lat:48.137,lng:-1.949,label:"L'Orange bleue · Montfort-sur-Meu (35)",addr:"2 rue de la Tannerie, Montfort-sur-Meu"},
     forts:["N°1 du fitness en France (400 clubs)","Prix imbattable dès 29,90 €/4 sem.","Coachs diplômés d'État inclus","Ouvert 7j/7 de 6h à 23h","90 % des franchisés viennent d'autres secteurs"],
-    clients:"Grand public — 400 000 adhérents. Cible locale : particuliers, comités d'entreprise, associations, collectivités du bassin rennais ouest."},
+    clients:"Grand public — 400 000 adhérents. Cible locale : particuliers, comités d'entreprise, associations, collectivités du bassin rennais ouest.",
+    pitch:["Tu connais quelqu'un qui cherche une salle de sport <b>accessible et complète</b> ? <b>L'Orange Bleue</b> c'est le <em>N°1 en France</em> — 400 salles. Le club de Montfort c'est <b>700 m²</b> de muscu et cardio, <b>44 cours collectifs par semaine</b> avec des <b>coachs diplômés d'État</b>, ouvert <b>7j/7 de 6h à 23h</b>. Et le prix ? <b>29,90 € les 4 semaines</b>, tout inclus.","Si tu connais un <em>chef d'entreprise</em>, un <em>CE</em>, une <em>asso</em> ou une <em>collectivité</em> qui cherche un partenaire bien-être pour ses équipes — c'est le moment. Tu envoies un ground, et si ça signe : <b>50 € de bonus pour toi</b>."],
+    why:["Tout le monde connaît quelqu'un qui cherche une salle — en janvier, en septembre, après les vacances","Le prix tue les objections — 29,90 €/4 sem. avec coachs inclus, personne ne fait mieux","Les entreprises cherchent du bien-être pour leurs équipes — QVT, team building, avantages salariés","La marque rassure — 400 clubs, 400 000 adhérents, 25 ans d'existence"],
+    args:[{i:"🏆",t:"N°1 du fitness en France",s:"400 clubs, 400 000 adhérents — pas un petit club de quartier"},{i:"💰",t:"29,90 € les 4 semaines, tout compris",s:"Cours collectifs illimités + coaching inclus. Étudiants dès 19 €"},{i:"🎓",t:"Coachs diplômés d'État en salle",s:"De vrais coachs présents 7j/7, pas des vidéos sur un écran"},{i:"🕐",t:"Ouvert 7j/7, de 6h à 23h",s:"Compatible avec tous les emplois du temps"},{i:"🏢",t:"Offres entreprises & CE",s:"Tarifs groupés, partenariats QVT, séances team building"}],
+    cibles:["Chefs d'entreprise","Comités d'entreprise","DRH / Responsables QVT","Associations sportives","Collectivités locales","Amis / famille / collègues"],
+    bonus:50,
+    prix:[{amount:"29,90€",per:"/4 sem.",detail:"Cours illimités + coaching",name:"Enjoy",feat:true},{amount:"19€",per:"/mois",detail:"Tarif jeune & étudiant",name:"Flex"}],
+    stats:[{v:"400",l:"clubs France & Espagne"},{v:"400K",l:"adhérents actifs"},{v:"156M€",l:"CA réseau (2022)"},{v:"1996",l:"année de création"}]},
   'elis':{logo:'<svg viewBox="0 0 76 76"><rect width="76" height="76" rx="16" fill="#fff" stroke="#E8E5DE"/><polygon points="10,22 24,38 10,54" fill="#009B4D"/><polygon points="18,22 32,38 18,54" fill="#E4002B"/><polygon points="26,22 40,38 26,54" fill="#009B4D"/><text x="54" y="42" text-anchor="middle" fill="#58585A" font-family="Arial,sans-serif" font-weight="700" font-size="16">elis</text></svg>',name:"Elis",cat:"Location-entretien de linge & hygiène · B2B",web:"https://fr.elis.com",li:"https://www.linkedin.com/company/elis/",
     histo:"Fondée en 1883 à Paris par Théophile Leducq (location de linge), Elis est devenue le leader multiservices de la location-entretien du linge, des vêtements de travail et de l'hygiène. Entrée en Bourse (Euronext Paris) en 2015 ; environ 57 000 collaborateurs et une présence dans une trentaine de pays.",
     services:["Location-entretien du linge plat (hôtellerie, santé)","Vêtements de travail sur mesure","Équipements d'hygiène & sanitaires","Tapis, entretien et services associés"],
@@ -2068,33 +2114,64 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
   var w=document.getElementById('f-web'); w.href=f.web; w.style.display=(f.web&&f.web!=='#')?'':'none';
   var li=document.getElementById('f-li'); li.href=f.li; li.style.display=(f.li&&f.li!=='#')?'':'none';
   var b='';
-  b+=ficheSec('Historique','<p>'+f.histo+'</p>');
-  b+=ficheSec('Services',ficheUl(f.services));
-  b+=ficheSec('Modèle économique & prix','<p>'+f.model+'</p>');
-  b+=ficheSec('Localisation','<p>'+f.loc+'</p>');
-  if(f.map){
-    var murl='https://www.google.com/maps/search/?api=1&query='+f.map.lat+','+f.map.lng;
-    b+='<a href="'+murl+'" target="_blank" rel="noopener" class="fiche-map" aria-label="Voir sur la carte">'
-      +'<svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg">'
-      +'<rect width="340" height="160" fill="#EAF7FC"/>'
-      +'<path d="M0 130 Q40 110 80 120 T160 115 T240 108 T340 125 V160 H0Z" fill="#C8E6C9" opacity=".45"/>'
-      +'<path d="M0 140 Q60 125 120 132 T240 126 T340 138 V160 H0Z" fill="#A5D6A7" opacity=".35"/>'
-      +'<line x1="90" y1="0" x2="90" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/>'
-      +'<line x1="200" y1="0" x2="200" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/>'
-      +'<line x1="0" y1="60" x2="340" y2="60" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/>'
-      +'<line x1="0" y1="110" x2="340" y2="110" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/>'
-      +'<text x="170" y="20" text-anchor="middle" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9" opacity=".35">Ille-et-Vilaine · 35</text>'
-      +'<circle cx="120" cy="70" r="22" fill="rgba(20,196,232,.1)" stroke="rgba(20,196,232,.3)" stroke-width="1"/>'
-      +'<circle cx="120" cy="70" r="12" fill="rgba(20,196,232,.15)" stroke="rgba(20,196,232,.4)" stroke-width="1"/>'
-      +'<text x="220" y="75" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="10" opacity=".3">Rennes ←</text>'
-      +'</svg>'
-      +'<div class="fiche-map-pin"><svg viewBox="0 0 100 44"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
-      +'<div class="fiche-map-label">'+f.map.label+'</div>'
-      +'<div class="fiche-map-tap">Ouvrir Maps ↗</div>'
-      +'</a>';
+  if(f.pitch){
+    b+='<div class="fiche-pitch"><h4>Ton pitch en 30 secondes</h4>';
+    f.pitch.forEach(function(p){b+='<p>« '+p+' »</p>';});
+    b+='</div>';
+    if(f.why){
+      var ck='<span class="wck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>';
+      b+='<div class="fiche-why"><h4>Pourquoi tu vas réussir ce ground</h4><ul>';
+      f.why.forEach(function(w){b+='<li>'+ck+'<span>'+w+'</span></li>';});
+      b+='</ul></div>';
+    }
+    if(f.args){
+      b+='<div class="fiche-args"><h4>Tes arguments massue</h4><ul>';
+      f.args.forEach(function(a){b+='<li><span class="ai">'+a.i+'</span><div class="at"><b>'+a.t+'</b><span>'+a.s+'</span></div></li>';});
+      b+='</ul></div>';
+    }
+    if(f.cibles){
+      b+='<div class="fiche-cibles"><h4>À qui en parler</h4><div class="tags">';
+      f.cibles.forEach(function(c){b+='<span class="tag">'+c+'</span>';});
+      b+='</div></div>';
+    }
+    if(f.bonus){
+      b+='<div class="fiche-bonus"><div class="fb-amount">'+f.bonus+' €</div><div class="fb-label">de bonus par ground signé</div><div class="fb-sub">+ 1 point par ground accepté pour le classement</div></div>';
+    }
+    if(f.prix){
+      b+='<div class="fiche-prix"><h4>Tarifs à connaître</h4><div class="pg">';
+      f.prix.forEach(function(p){b+='<div class="pc'+(p.feat?' feat':'')+'"><div class="pa">'+p.amount+'<span>'+p.per+'</span></div><div class="pp">'+p.detail+'</div><div class="pn">'+p.name+'</div></div>';});
+      b+='</div></div>';
+    }
+    b+=ficheSec('Le club',ficheUl(f.services));
+    b+=ficheSec('Localisation','<p>'+f.loc+'</p>');
+    if(f.map){
+      var murl='https://www.google.com/maps/search/?api=1&query='+f.map.lat+','+f.map.lng;
+      b+='<a href="'+murl+'" target="_blank" rel="noopener" class="fiche-map" aria-label="Voir sur la carte">'
+        +'<svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="160" fill="#EAF7FC"/><path d="M0 130 Q40 110 80 120 T160 115 T240 108 T340 125 V160 H0Z" fill="#C8E6C9" opacity=".45"/><path d="M0 140 Q60 125 120 132 T240 126 T340 138 V160 H0Z" fill="#A5D6A7" opacity=".35"/><line x1="90" y1="0" x2="90" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><line x1="200" y1="0" x2="200" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><text x="170" y="20" text-anchor="middle" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9" opacity=".35">Ille-et-Vilaine · 35</text><circle cx="120" cy="70" r="22" fill="rgba(20,196,232,.1)" stroke="rgba(20,196,232,.3)" stroke-width="1"/><circle cx="120" cy="70" r="12" fill="rgba(20,196,232,.15)" stroke="rgba(20,196,232,.4)" stroke-width="1"/></svg>'
+        +'<div class="fiche-map-pin"><svg viewBox="0 0 100 44"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
+        +'<div class="fiche-map-label">'+f.map.label+'</div><div class="fiche-map-tap">Ouvrir Maps ↗</div></a>';
+    }
+    if(f.stats){
+      b+='<div class="fiche-stats">';
+      f.stats.forEach(function(s){b+='<div class="fs"><div class="fv">'+s.v+'</div><div class="fl">'+s.l+'</div></div>';});
+      b+='</div>';
+    }
+    b+=ficheSec('Historique','<p>'+f.histo+'</p>');
+  } else {
+    b+=ficheSec('Historique','<p>'+f.histo+'</p>');
+    b+=ficheSec('Services',ficheUl(f.services));
+    b+=ficheSec('Modèle économique & prix','<p>'+f.model+'</p>');
+    b+=ficheSec('Localisation','<p>'+f.loc+'</p>');
+    if(f.map){
+      var murl='https://www.google.com/maps/search/?api=1&query='+f.map.lat+','+f.map.lng;
+      b+='<a href="'+murl+'" target="_blank" rel="noopener" class="fiche-map" aria-label="Voir sur la carte">'
+        +'<svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="160" fill="#EAF7FC"/><path d="M0 130 Q40 110 80 120 T160 115 T240 108 T340 125 V160 H0Z" fill="#C8E6C9" opacity=".45"/><path d="M0 140 Q60 125 120 132 T240 126 T340 138 V160 H0Z" fill="#A5D6A7" opacity=".35"/><line x1="90" y1="0" x2="90" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><line x1="200" y1="0" x2="200" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><text x="170" y="20" text-anchor="middle" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9" opacity=".35">Ille-et-Vilaine · 35</text><circle cx="120" cy="70" r="22" fill="rgba(20,196,232,.1)" stroke="rgba(20,196,232,.3)" stroke-width="1"/><circle cx="120" cy="70" r="12" fill="rgba(20,196,232,.15)" stroke="rgba(20,196,232,.4)" stroke-width="1"/></svg>'
+        +'<div class="fiche-map-pin"><svg viewBox="0 0 100 44"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
+        +'<div class="fiche-map-label">'+f.map.label+'</div><div class="fiche-map-tap">Ouvrir Maps ↗</div></a>';
+    }
+    b+=ficheSec('Points forts',ficheUl(f.forts));
+    b+=ficheSec('Clients emblématiques','<p>'+f.clients+'</p>');
   }
-  b+=ficheSec('Points forts',ficheUl(f.forts));
-  b+=ficheSec('Clients emblématiques','<p>'+f.clients+'</p>');
   document.getElementById('f-body').innerHTML=b;
   var m=document.getElementById('fiche'); m.classList.add('on'); m.querySelector('.fiche-scroll').scrollTop=0;
 }
