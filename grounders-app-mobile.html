@@ -2573,7 +2573,7 @@ function renderDeals(){
       <div class="top">
         <div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div>
         <div style="flex:1"><b style="color:var(--gold-d);font-size:15px">${d.company}</b></div>
-        <button class="fav ${isFav(d.id)?'on':''}" onclick="event.stopPropagation();toggleFav('${d.id}')" aria-label="Favori"><svg viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10.1-9.4C.4 8.9 1.6 5.4 5 5.4c2 0 3.3 1.2 4 2.4.7-1.2 2-2.4 4-2.4 3.4 0 4.6 3.5 3.1 6.2C19.6 16.3 12 21 12 21Z"/></svg></button>
+        <button class="fav ${isFav(d.id)?'on':''}" onclick="event.stopPropagation();toggleFav('${d.id}')" aria-label="Favori"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
       </div>
       <div style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:2px">${d.marche} · ${d.ville||''}</div>
       <div onclick="openFiche('${d.id}')" style="cursor:pointer;font-size:13px;color:#54514a;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden">${d.desc}</div>
