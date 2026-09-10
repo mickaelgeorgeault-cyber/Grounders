@@ -1469,16 +1469,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- HOME -->
     <section class="screen on" id="s-home">
       <div class="hello">Bonjour <b id="hello-name"></b></div>
-      <div style="display:flex;gap:8px;margin:8px 0 14px">
-        <div style="flex:1;background:var(--gold-wash);border:1px solid var(--gold-l);border-radius:10px;padding:8px 10px;text-align:center">
-          <div style="font-size:11px;color:var(--ink);font-weight:600">Ground accepté</div>
-          <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--gold)">15 €</div>
-        </div>
-        <div style="flex:1;background:var(--gold-wash);border:1px solid var(--gold-l);border-radius:10px;padding:8px 10px;text-align:center">
-          <div style="font-size:11px;color:var(--ink);font-weight:600">Ground signé</div>
-          <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--gold-d)">Super Bonus</div>
-        </div>
-      </div>
+      <div class="hello-sub">Voici vos grounds du moment.</div>
 
       <div class="h2" style="display:flex;align-items:center;gap:8px">Playground <span class="cnt" id="pg-count">—</span><span class="seeall" onclick="show('deals')">Voir tout ›</span></div>
       <div id="map" class="fmap"></div>
@@ -1537,7 +1528,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <section class="screen" id="s-deals">
       <div class="eyebrow">Le terrain de jeu</div>
       <div class="h1" style="display:flex;align-items:center;gap:8px">Playground <span class="cnt" id="pg-count2">—</span></div>
-      <p class="sub" style="margin:6px 0 12px">Choisissez un deal et créez vos grounds. Le bonus tombe quand le ground devient client.</p>
+      <div style="display:flex;gap:8px;margin:10px 0 12px">
+        <div style="flex:1;background:var(--gold-wash);border:1px solid var(--gold-l);border-radius:10px;padding:8px 10px;text-align:center">
+          <div style="font-size:11px;color:var(--ink);font-weight:600">Ground accepté</div>
+          <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--gold)">15 €</div>
+        </div>
+        <div style="flex:1;background:var(--gold-wash);border:1px solid var(--gold-l);border-radius:10px;padding:8px 10px;text-align:center">
+          <div style="font-size:11px;color:var(--ink);font-weight:600">Ground signé</div>
+          <div style="font-family:'Space Grotesk';font-weight:700;font-size:20px;color:var(--gold-d)">Super Bonus</div>
+        </div>
+      </div>
       <div class="filters" id="filters">
         <select class="fchip" id="fl-date" onchange="renderDeals()"><option value="recent">Date ↓ récents</option><option value="old">Date ↑ anciens</option></select>
         <select class="fchip" id="fl-dept" onchange="renderDeals()"><option value="">Département</option></select>
