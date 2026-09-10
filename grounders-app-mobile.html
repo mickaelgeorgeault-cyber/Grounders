@@ -284,7 +284,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* ===== INTRO / LANDING (scrollable) ===== */
 .intro{position:absolute;top:0;left:0;width:100%;height:100%;z-index:300;display:none}
 .intro.show{display:block}
-.iscreen{position:absolute;top:0;left:0;width:100%;height:100%}.i-splash{background:#0B2A4A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2}.i-splash.gone{display:none}.splash-brand{font-family:'Varela Round';font-size:56px;color:#fff;position:relative;letter-spacing:-.01em}.splash-brand::after{content:'';position:absolute;left:28%;right:0;bottom:4px;height:5px;background:var(--gold);border-radius:3px}.splash-tag{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.65)}.i-pitch{background:var(--paper);flex-direction:column;display:none}.i-pitch.on{display:flex}.pitch-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:30px 22px 12px}.pitch-h1{font-family:'Space Grotesk';font-weight:700;font-size:35px;line-height:1.08;letter-spacing:-.03em;color:var(--ink);margin:12px 0 22px}.pitch-h1 em{font-style:normal;color:var(--gold-d)}.pitch-points{display:flex;flex-direction:column;gap:16px}.pp{display:flex;align-items:center;gap:14px}.pp-ic{width:48px;height:48px;flex:0 0 auto;border-radius:14px;background:var(--gold);display:grid;place-items:center}.pp-ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pp b{font-size:17px;color:var(--ink);display:block;line-height:1.15}.pp p{font-size:13px;color:#6E7480;margin-top:2px}.pitch-ww{margin-top:24px;font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--gold-d);text-align:center}.pitch-ww i{color:#c9ccd2;font-style:normal;margin:0 4px}.hello{font-family:'Space Grotesk';font-weight:700;font-size:27px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:2px 0 2px}.hello b{color:var(--gold-d)}.hello-sub{font-size:13px;color:#6E7480;margin-bottom:14px}
+.iscreen{position:absolute;top:0;left:0;width:100%;height:100%}.i-splash{background:#0B2A4A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;z-index:2}.i-splash.gone{display:none}.splash-brand{font-family:'Varela Round';font-size:40px;color:#fff;position:relative;letter-spacing:-.01em}.splash-brand::after{content:'';position:absolute;left:28%;right:0;bottom:4px;height:5px;background:var(--gold);border-radius:3px}.splash-tag{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.65)}.i-pitch{background:var(--paper);flex-direction:column;display:none}.i-pitch.on{display:flex}.pitch-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:30px 22px 12px}.pitch-h1{font-family:'Space Grotesk';font-weight:700;font-size:35px;line-height:1.08;letter-spacing:-.03em;color:var(--ink);margin:12px 0 22px}.pitch-h1 em{font-style:normal;color:var(--gold-d)}.pitch-points{display:flex;flex-direction:column;gap:16px}.pp{display:flex;align-items:center;gap:14px}.pp-ic{width:48px;height:48px;flex:0 0 auto;border-radius:14px;background:var(--gold);display:grid;place-items:center}.pp-ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.pp b{font-size:17px;color:var(--ink);display:block;line-height:1.15}.pp p{font-size:13px;color:#6E7480;margin-top:2px}.pitch-ww{margin-top:24px;font-family:'Space Grotesk';font-weight:700;font-size:14px;color:var(--gold-d);text-align:center}.pitch-ww i{color:#c9ccd2;font-style:normal;margin:0 4px}.hello{font-family:'Space Grotesk';font-weight:700;font-size:27px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:2px 0 2px}.hello b{color:var(--gold-d)}.hello-sub{font-size:13px;color:#6E7480;margin-bottom:14px}
 .intro-scroll{}
 .intro-cta{position:sticky;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--hair);background:var(--paper);display:flex;flex-direction:column;gap:8px}
 .intro-cta .linkbtn{background:none;border:none;color:var(--gold-d);font-weight:600;font-size:13px;cursor:pointer;padding:4px}
@@ -685,7 +685,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .fiche-map-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:var(--gold-d);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;padding:5px 12px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .fiche-map-tap{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--gold-d);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.04em}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
-.faq-item.open .faq-answer{max-height:200px!important}
+.faq-item.open .faq-answer{max-height:300px!important}
 </style>
 <style>/* required styles */
 
@@ -1417,7 +1417,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <div class="promo-glow2"></div>
     <button class="promo-close" onclick="closePromo()" aria-label="Fermer">✕</button>
     <div class="promo-inner">
-      <div class="promo-headline">Et vous, combien êtes-vous prêt à payer pour recevoir un ground ?</div>
+      <div class="promo-headline">Pros & Entreprises : combien êtes-vous prêts à payer pour recevoir un ground ?</div>
       <div class="promo-divider"></div>
       <div class="promo-top">
         <div class="promo-logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#8FD9F2"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg></div>
@@ -1662,7 +1662,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <section class="screen" id="s-contact">
       <button class="back" onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Accueil</button>
       <div class="eyebrow">Besoin d'aide ?</div>
-      <div class="h1">Contact</div>
+      <div class="h1">Help</div>
       <p class="sub" style="margin:6px 0 16px">Une question, un souci technique ou un partenariat ? On est là pour vous.</p>
 
       <div class="card" style="display:flex;align-items:center;gap:14px;padding:18px;background:#25D366;color:#fff;border-radius:16px;cursor:pointer" onclick="window.open('https://wa.me/33612345678','_blank')">
@@ -1674,6 +1674,68 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="card" style="margin-top:14px;display:flex;align-items:center;gap:14px;padding:18px;cursor:pointer" onclick="window.open('mailto:contact@grounders.fr')">
         <svg viewBox="0 0 24 24" style="width:28px;height:28px;stroke:var(--gold-d);stroke-width:2;fill:none;flex:0 0 28px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <div><b style="font-size:14px">contact@grounders.fr</b><div class="sub" style="font-size:12px;margin-top:2px">Pour les demandes par email</div></div>
+      </div>
+
+      <div class="h2" style="margin-top:24px">Lexique Grounders</div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Playground</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Le terrain de jeu du grounder. C'est la liste de tous les deals disponibles proposés par les entreprises partenaires. Vous y choisissez les offres que vous souhaitez recommander à votre réseau.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Ground</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Une mise en relation qualifiée entre un prospect que vous connaissez et une entreprise partenaire. Vous remplissez un formulaire avec les coordonnées du contact, et l'entreprise prend le relais commercialement.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Pitch</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Un argumentaire court et percutant généré par l'IA pour présenter un deal à votre réseau. Le pitch résume les points forts de l'entreprise et vous donne les mots justes pour convaincre.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Grounder</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">C'est vous ! Un apporteur d'affaires qui utilise sa connaissance du terrain et son réseau pour recommander les services des entreprises partenaires, et toucher un bonus à chaque deal signé.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Deal</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Une offre publiée par une entreprise partenaire dans le Playground. Chaque deal précise le service proposé, le bonus en euros et les conditions. C'est la base de travail du grounder.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Challenge</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Une compétition entre grounders sur une durée limitée. Objectif : envoyer un maximum de grounds signés pour gagner des dotations partenaires et grimper au classement.</p>
+        </div>
       </div>
 
       <div class="h2" style="margin-top:24px">Questions fréquentes</div>
@@ -1770,7 +1832,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <button data-s="deals" onclick="show('deals')"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V4h8a2 2 0 0 1 1.4.6l8.2 8.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg><span>Playground</span></button>
     <button data-s="leads" class="nav-logo" onclick="show('leads')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#3B82C4"/><path d="M6 8 12 3 18 8" stroke="#0B2A4A"/></svg></button>
     <button data-s="coaching" onclick="show('coaching')"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg><span>Coach</span></button>
-    <button data-s="contact" onclick="show('contact')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Contact</span></button>
+    <button data-s="contact" onclick="show('contact')"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Help</span></button>
   </nav>
 
   <!-- FICHE ENTREPRISE (modèle) -->
@@ -1800,7 +1862,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <!-- PAGE 1 : SPLASH (type Uber) -->
     <div class="iscreen i-splash" id="i-splash">
       <button class="iskip" onclick="introToAuth('up')">Passer ›</button>
-      <div class="splash-mark"><svg viewBox="0 0 100 44" style="width:132px"><path d="M18 16 50 3 82 16" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#7FB2DE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="splash-mark"><svg viewBox="0 0 100 44" style="width:90px"><path d="M18 16 50 3 82 16" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#7FB2DE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="splash-brand">grounders</div>
       <div class="splash-tag">We are all grounders</div>
     </div>
