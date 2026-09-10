@@ -558,17 +558,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ck2-msg{font-size:13.5px;color:rgba(255,255,255,.92);margin-top:12px;line-height:1.4}
 .ck2-foot{margin-top:16px;font-family:'Space Grotesk';font-weight:700;font-size:14px;color:#14C4E8}
 /* Challenge vivant */
-.ch2{background:#fff;border:1px solid var(--hair);border-radius:22px;padding:18px;margin-top:20px}
+.ch2{background:#fff;border:1px solid var(--hair);border-radius:22px;padding:18px;margin-top:20px;position:relative;overflow:hidden}
+.ch2.ch-main{border:2px solid var(--gold);box-shadow:0 4px 20px rgba(20,196,232,.18);animation:chGlow 2.5s ease-in-out infinite}
+@keyframes chGlow{0%,100%{box-shadow:0 4px 20px rgba(20,196,232,.18)}50%{box-shadow:0 6px 30px rgba(20,196,232,.35)}}
 .ch2-top{display:flex;gap:13px;align-items:center}
-.ch2-badge{width:56px;height:56px;flex:0 0 auto}
+.ch2-badge{width:56px;height:56px;flex:0 0 auto;animation:chPulse 3s ease-in-out infinite}
+@keyframes chPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .ch2-badge svg{width:100%;height:100%;display:block}
 .ch2-kicker{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#14C4E8}
 .ch2-title{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:#0B2A4A;line-height:1.15;margin-top:2px}
 .ch2-prog{margin-top:17px}
 .ch2-prog-top{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;color:#0B2A4A;margin-bottom:8px}
-.ch2-days{color:#14C4E8}
+.ch2-days{color:#14C4E8;animation:chBlink 1.8s ease-in-out infinite}
+@keyframes chBlink{0%,100%{opacity:1}50%{opacity:.5}}
 .ch2-bar{height:12px;background:#EAF7FC;border-radius:6px;overflow:hidden}
-.ch2-bar i{display:block;height:100%;background:#14C4E8;border-radius:6px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.ch2-bar i{display:block;height:100%;background:linear-gradient(90deg,#14C4E8,#3B82C4,#14C4E8);background-size:200% 100%;border-radius:6px;transition:width .9s cubic-bezier(.2,.8,.2,1);animation:chShimmer 2s linear infinite}
+@keyframes chShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .ch2-reward{display:flex;align-items:center;gap:10px;margin-top:15px;background:var(--gold-wash);border-radius:12px;padding:11px 13px;font-size:13px;color:#0B2A4A;font-weight:600}
 .ch2-gift{width:26px;height:26px;flex:0 0 auto}
 .ch2-gift svg{width:100%;height:100%}
@@ -578,7 +583,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ch2-av:first-child{margin-left:0}
 .ch2-av.a1{background:#0B2A4A}.ch2-av.a2{background:#3B82C4}.ch2-av.a3{background:#14C4E8}
 .ch2-avatars small{font-size:12px;color:#6E7480;margin-left:8px}
-.ch2-cta{background:#14C4E8;color:#0B2A4A;border:none;font-family:'Space Grotesk';font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px;cursor:pointer}
+.ch2-cta{background:#14C4E8;color:#0B2A4A;border:none;font-family:'Space Grotesk';font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px;cursor:pointer;position:relative;overflow:hidden}
+.ch2-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:ctaShine 2.5s ease-in-out infinite}
+@keyframes ctaShine{0%{left:-100%}60%{left:150%}100%{left:150%}}
 
 .ck2-cmp{margin-top:2px}
 .cmp-row{display:flex;align-items:center;gap:10px;margin-top:10px}
@@ -1490,7 +1497,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
       <div class="ch-head"><span class="h2">Challenges</span><span class="seeall" onclick="show('challenges')">Tout voir ›</span></div>
       <div class="ch-carousel">
-        <div class="ch2 ch-slide">
+        <div class="ch2 ch-slide ch-main">
           <div class="ch2-top"><div class="ch2-badge"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="37" fill="#fff" stroke="#e3edf2"/><path d="M24 34 38 26 52 34" fill="none" stroke="#0B2A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 41 38 33 52 41" fill="none" stroke="#3B82C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 48 38 40 52 48" fill="none" stroke="#14C4E8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ch2-kicker">En cours · 247 inscrits</div><div class="ch2-title">Challenge Grounders 2026</div></div></div>
           <div class="ch2-prog"><div class="ch2-prog-top"><span id="ch-signed">0 / 200 pts</span><span class="ch2-days">18 j</span></div><div class="ch2-bar"><i id="ch-bar" style="width:0%"></i></div></div>
           <button class="ch2-cta" onclick="show('challenges')">Participer & exploser le classement →</button>
