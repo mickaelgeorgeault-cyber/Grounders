@@ -2572,16 +2572,14 @@ function renderDeals(){
     <div class="card deal">
       <div class="top">
         <div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div>
+        <div style="flex:1"><b style="color:var(--gold-d);font-size:15px">${d.company}</b></div>
         <button class="fav ${isFav(d.id)?'on':''}" onclick="event.stopPropagation();toggleFav('${d.id}')" aria-label="Favori"><svg viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10.1-9.4C.4 8.9 1.6 5.4 5 5.4c2 0 3.3 1.2 4 2.4.7-1.2 2-2.4 4-2.4 3.4 0 4.6 3.5 3.1 6.2C19.6 16.3 12 21 12 21Z"/></svg></button>
       </div>
-      <div class="deal-info" onclick="openFiche('${d.id}')" style="cursor:pointer">
-        <b style="color:var(--gold-d);font-size:15px;display:block">${d.company}</b>
-        <span style="font-size:12px;color:var(--muted);display:block;margin-top:2px">${d.marche} · ${d.ville||''}</span>
-        <span style="font-size:12px;color:var(--muted);display:block;margin-top:1px">${d.who} · ${d.role}${d.signe?' · <b style=\'color:#1E9E63\'>Signé</b>':''}</span>
-      </div>
+      <div style="font-size:12px;color:var(--gold);font-weight:600;margin-bottom:4px">${d.marche}</div>
+      <div onclick="openFiche('${d.id}')" style="cursor:pointer;font-size:13px;color:#54514a;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${d.desc}</div>
       <div class="foot" style="margin-top:12px">
         <div class="chip"><span>${d.pts} €</span><small>Bonus</small></div>
-        <button class="btn gold ground-btn" style="width:auto;padding:10px 18px;margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px" onclick="openDeal('${d.id}')"><svg viewBox="0 0 36 30" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:24px"><path d="M6 22 18 14 30 22" stroke="#14C4E8"/><path d="M6 16 18 8 30 16" stroke="#3B82C4"/><path d="M6 10 18 2 30 10" stroke="#0B2A4A"/></svg><span style="font-weight:700">Ground</span></button>
+        <button class="btn gold ground-btn" style="width:44px;height:44px;padding:0;margin-left:auto;display:flex;align-items:center;justify-content:center;border-radius:50%" onclick="openDeal('${d.id}')" aria-label="Ground"><svg viewBox="0 0 36 30" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:26px;height:22px"><path d="M6 22 18 14 30 22" stroke="#14C4E8"/><path d="M6 16 18 8 30 16" stroke="#3B82C4"/><path d="M6 10 18 2 30 10" stroke="#0B2A4A"/></svg></button>
       </div>
     </div>`;}).join('');
 }
