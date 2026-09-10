@@ -2227,12 +2227,6 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
     if(f.bonus){
       b+='<div class="fiche-bonus"><div class="fb-amount">'+f.bonus+' €</div><div class="fb-label">de bonus par ground signé</div><div class="fb-sub">+ 1 point par ground accepté pour le classement</div></div>';
     }
-    if(f.why){
-      var ck='<span class="wck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>';
-      b+='<div class="fiche-why"><h4>Pourquoi tu vas réussir ce ground</h4><ul>';
-      f.why.forEach(function(w){b+='<li>'+ck+'<span>'+w+'</span></li>';});
-      b+='</ul></div>';
-    }
     b+='<div class="fiche-pitch"><h4>Ton pitch en 30 secondes</h4>';
     f.pitch.forEach(function(p){b+='<p>« '+p+' »</p>';});
     b+='</div>';
@@ -2264,6 +2258,12 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
       b+='<button class="trn-btn trn-start" onclick="startTraining(\''+k+'\')"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M13 3 5 14h5l-1 7 9-11h-5z"/></svg> S\'entraîner au pitch</button>';
       b+='<div class="trn-panel" id="trn-panel"></div>';
       b+='</div>';
+    }
+    if(f.why){
+      var ck='<span class="wck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>';
+      b+='<div class="fiche-why"><h4>Pourquoi tu vas réussir ce ground</h4><ul>';
+      f.why.forEach(function(w){b+='<li>'+ck+'<span>'+w+'</span></li>';});
+      b+='</ul></div>';
     }
   } else {
     b+=ficheSec('Historique','<p>'+f.histo+'</p>');
