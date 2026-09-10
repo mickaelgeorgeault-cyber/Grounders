@@ -2224,15 +2224,18 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
   var li=document.getElementById('f-li'); li.href=f.li; li.style.display=(f.li&&f.li!=='#')?'':'none';
   var b='';
   if(f.pitch){
-    b+='<div class="fiche-pitch"><h4>Ton pitch en 30 secondes</h4>';
-    f.pitch.forEach(function(p){b+='<p>« '+p+' »</p>';});
-    b+='</div>';
+    if(f.bonus){
+      b+='<div class="fiche-bonus"><div class="fb-amount">'+f.bonus+' €</div><div class="fb-label">de bonus par ground signé</div><div class="fb-sub">+ 1 point par ground accepté pour le classement</div></div>';
+    }
     if(f.why){
       var ck='<span class="wck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>';
       b+='<div class="fiche-why"><h4>Pourquoi tu vas réussir ce ground</h4><ul>';
       f.why.forEach(function(w){b+='<li>'+ck+'<span>'+w+'</span></li>';});
       b+='</ul></div>';
     }
+    b+='<div class="fiche-pitch"><h4>Ton pitch en 30 secondes</h4>';
+    f.pitch.forEach(function(p){b+='<p>« '+p+' »</p>';});
+    b+='</div>';
     if(f.args){
       b+='<div class="fiche-args"><h4>Tes arguments massue</h4><ul>';
       f.args.forEach(function(a){b+='<li><span class="ai">'+a.i+'</span><div class="at"><b>'+a.t+'</b><span>'+a.s+'</span></div></li>';});
@@ -2242,9 +2245,6 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
       b+='<div class="fiche-cibles"><h4>À qui en parler</h4><div class="tags">';
       f.cibles.forEach(function(c){b+='<span class="tag">'+c+'</span>';});
       b+='</div></div>';
-    }
-    if(f.bonus){
-      b+='<div class="fiche-bonus"><div class="fb-amount">'+f.bonus+' €</div><div class="fb-label">de bonus par ground signé</div><div class="fb-sub">+ 1 point par ground accepté pour le classement</div></div>';
     }
     if(f.prix){
       b+='<div class="fiche-prix"><h4>Tarifs à connaître</h4><div class="pg">';
@@ -2572,18 +2572,16 @@ function renderDeals(){
     <div class="card deal">
       <div class="top">
         <div class="lg">${DEAL_LOGOS[d.id]||d.mono}</div>
-        <div class="who" style="flex:1"><b style="color:var(--gold-d)">${d.company}</b><span>${d.who} · ${d.role}${d.signe?' · <b style=\'color:#1E9E63\'>Signé</b>':''}</span></div>
-        ${d.tier?`<span class="vtag ${d.tier}" onclick="event.stopPropagation();toast('Vidéo ${d.tier==='or'?'Or':'Argent'} — démo')">Vidéo ${d.tier==='or'?'Or':'Argent'}</span>`:''}
         <button class="fav ${isFav(d.id)?'on':''}" onclick="event.stopPropagation();toggleFav('${d.id}')" aria-label="Favori"><svg viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10.1-9.4C.4 8.9 1.6 5.4 5 5.4c2 0 3.3 1.2 4 2.4.7-1.2 2-2.4 4-2.4 3.4 0 4.6 3.5 3.1 6.2C19.6 16.3 12 21 12 21Z"/></svg></button>
       </div>
-      <div class="desc">${d.desc}</div>
-      <div class="lk">En savoir plus · ${d.link}</div>
-      <div class="foot">
-        ${d.tier?`<button class="play" onclick="toast('▶︎ Vidéo du deal — démo')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>`:''}
-        <div class="chip"><span>${d.pts} €</span><small>Bonus</small>
-          <svg viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/></svg>
-        </div>
-        <button class="btn" style="width:auto;padding:11px 14px;background:#fff;color:#0B2A4A;border:1.5px solid var(--hair);margin-left:auto" onclick="event.stopPropagation();openFiche('${d.id}')">Fiche</button><button class="btn gold ground-btn" style="width:auto;padding:8px 14px;margin-left:8px;display:flex;align-items:center;gap:6px" onclick="openDeal('${d.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M6 15 12 10 18 15" stroke="#14C4E8"/><path d="M6 11.5 12 6.5 18 11.5" stroke="#fff"/><path d="M6 8 12 3 18 8" stroke="#fff"/></svg><span style="font-weight:700;font-size:12px">Ground</span></button>
+      <div class="deal-info" onclick="openFiche('${d.id}')" style="cursor:pointer">
+        <b style="color:var(--gold-d);font-size:15px;display:block">${d.company}</b>
+        <span style="font-size:12px;color:var(--muted);display:block;margin-top:2px">${d.marche} · ${d.ville||''}</span>
+        <span style="font-size:12px;color:var(--muted);display:block;margin-top:1px">${d.who} · ${d.role}${d.signe?' · <b style=\'color:#1E9E63\'>Signé</b>':''}</span>
+      </div>
+      <div class="foot" style="margin-top:12px">
+        <div class="chip"><span>${d.pts} €</span><small>Bonus</small></div>
+        <button class="btn gold ground-btn" style="width:auto;padding:10px 18px;margin-left:auto;display:flex;align-items:center;gap:8px;font-size:14px" onclick="openDeal('${d.id}')"><svg viewBox="0 0 36 30" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:28px;height:24px"><path d="M6 22 18 14 30 22" stroke="#14C4E8"/><path d="M6 16 18 8 30 16" stroke="#3B82C4"/><path d="M6 10 18 2 30 10" stroke="#0B2A4A"/></svg><span style="font-weight:700">Ground</span></button>
       </div>
     </div>`;}).join('');
 }
