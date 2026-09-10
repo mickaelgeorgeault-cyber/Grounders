@@ -724,7 +724,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .fiche-map-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:var(--gold-d);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:11px;padding:5px 12px;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .fiche-map-tap{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--gold-d);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.04em}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
-.faq-item.open .faq-answer{max-height:300px!important}
+.faq-item.open .faq-answer{max-height:600px!important}
 
 /* ── Training: Quiz + Enregistrement ── */
 .trn{margin:14px 16px 0}
@@ -1821,6 +1821,58 @@ svg.leaflet-image-layer.leaflet-interactive path {
         </div>
         <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
           <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.5">Une compétition entre grounders sur une durée limitée. Objectif : envoyer un maximum de grounds signés pour gagner des dotations partenaires et grimper au classement.</p>
+        </div>
+      </div>
+
+      <div class="h2" style="margin-top:24px">Règlement — Évaluation du pitch</div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Comment fonctionne l'évaluation ?</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.6">L'évaluation est basée sur la <b>méthode Mehrabian</b> adaptée au vocal (sans geste). Elle analyse 3 dimensions de ta communication : le <b>vocal</b> (comment tu parles), le <b>contenu</b> (ce que tu dis) et la <b>confiance</b> (l'impression que tu dégages). Note sur 10, il faut <b>8/10 minimum</b> pour être déclaré prêt à grounder.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Vocal — 5 points sur 10</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.6"><b>Durée (2 pts)</b> — Un bon pitch dure entre 30 et 60 secondes. Trop court = tu survoles. Trop long = tu perds ton interlocuteur.<br><br><b>Volume (1 pt)</b> — Ta voix doit être claire et audible. Parle fort, avec conviction, comme si tu t'adressais à quelqu'un à 2 mètres.<br><br><b>Variation de ton (1 pt)</b> — Une voix monotone endort. Varie le rythme, marque des accents sur les chiffres clés, ralentis sur la conclusion.<br><br><b>Fluidité (1 pt)</b> — Le ratio parole/silence est mesuré. Les hésitations, les « euh », les blancs trahissent un manque de préparation. Objectif : 70%+ de parole.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Contenu — 3 points sur 10</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.6"><b>Maîtrise des données (1 pt)</b> — Ton score au quiz reflète ta connaissance du partenaire. Il faut 90%+ pour valider ce critère.<br><br><b>Structure (1 pt)</b> — Ton pitch doit couvrir les 4 piliers : accroche, prix, cible et appel à l'action. Une durée entre 25 et 75 secondes permet de les couvrir.<br><br><b>Conclusion (1 pt)</b> — Toujours finir par une demande concrète : « Tu connais quelqu'un ? Je t'envoie le lien. » Un pitch sans CTA est un pitch perdu.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Confiance — 2 points sur 10</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.6">La confiance est un score composite : durée correcte + volume suffisant + quiz maîtrisé + parole fluide. C'est l'adaptation Mehrabian du langage corporel (55%) au vocal : ton interlocuteur « entend » ta confiance dans ta voix, ton débit et ta maîtrise du sujet. Si tu connais tes chiffres et que tu parles fort et sans hésiter, tu inspires confiance.</p>
+        </div>
+      </div>
+
+      <div class="card faq-item" style="margin-top:8px;cursor:pointer" onclick="this.classList.toggle('open')">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <b style="font-size:14px;color:var(--gold-d)">Conseils pour réussir</b>
+          <svg class="faq-chevron" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--muted);stroke-width:2;fill:none;flex:0 0 18px;transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+          <p class="sub" style="font-size:13px;margin-top:10px;line-height:1.6">1. <b>Lis la fiche 3 fois</b> avant de t'enregistrer.<br>2. <b>Répète à voix haute</b> 5 fois sans t'enregistrer.<br>3. <b>Structure ton pitch</b> : accroche (5s) → prix (10s) → arguments (20s) → cible (10s) → CTA (5s).<br>4. <b>Parle debout</b>, ça change ta voix.<br>5. <b>Souris en parlant</b>, ça s'entend dans la voix.<br>6. <b>Réécoute-toi</b> avant de recommencer.</p>
         </div>
       </div>
 
