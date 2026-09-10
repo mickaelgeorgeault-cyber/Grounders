@@ -2201,13 +2201,6 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
     }
     b+=ficheSec('Le club',ficheUl(f.services));
     b+=ficheSec('Localisation','<p>'+f.loc+'</p>');
-    if(f.map){
-      var murl='https://www.google.com/maps/search/?api=1&query='+f.map.lat+','+f.map.lng;
-      b+='<a href="'+murl+'" target="_blank" rel="noopener" class="fiche-map" aria-label="Voir sur la carte">'
-        +'<svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="160" fill="#EAF7FC"/><path d="M0 130 Q40 110 80 120 T160 115 T240 108 T340 125 V160 H0Z" fill="#C8E6C9" opacity=".45"/><path d="M0 140 Q60 125 120 132 T240 126 T340 138 V160 H0Z" fill="#A5D6A7" opacity=".35"/><line x1="90" y1="0" x2="90" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><line x1="200" y1="0" x2="200" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><text x="170" y="20" text-anchor="middle" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9" opacity=".35">Ille-et-Vilaine · 35</text><circle cx="120" cy="70" r="22" fill="rgba(20,196,232,.1)" stroke="rgba(20,196,232,.3)" stroke-width="1"/><circle cx="120" cy="70" r="12" fill="rgba(20,196,232,.15)" stroke="rgba(20,196,232,.4)" stroke-width="1"/></svg>'
-        +'<div class="fiche-map-pin"><svg viewBox="0 0 100 44"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
-        +'<div class="fiche-map-label">'+f.map.label+'</div><div class="fiche-map-tap">Ouvrir Maps ↗</div></a>';
-    }
     if(f.stats){
       b+='<div class="fiche-stats">';
       f.stats.forEach(function(s){b+='<div class="fs"><div class="fv">'+s.v+'</div><div class="fl">'+s.l+'</div></div>';});
@@ -2225,13 +2218,6 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
     b+=ficheSec('Services',ficheUl(f.services));
     b+=ficheSec('Modèle économique & prix','<p>'+f.model+'</p>');
     b+=ficheSec('Localisation','<p>'+f.loc+'</p>');
-    if(f.map){
-      var murl='https://www.google.com/maps/search/?api=1&query='+f.map.lat+','+f.map.lng;
-      b+='<a href="'+murl+'" target="_blank" rel="noopener" class="fiche-map" aria-label="Voir sur la carte">'
-        +'<svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg"><rect width="340" height="160" fill="#EAF7FC"/><path d="M0 130 Q40 110 80 120 T160 115 T240 108 T340 125 V160 H0Z" fill="#C8E6C9" opacity=".45"/><path d="M0 140 Q60 125 120 132 T240 126 T340 138 V160 H0Z" fill="#A5D6A7" opacity=".35"/><line x1="90" y1="0" x2="90" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><line x1="200" y1="0" x2="200" y2="160" stroke="#B0C9D8" stroke-width=".5" opacity=".5"/><text x="170" y="20" text-anchor="middle" fill="#0B2A4A" font-family="Space Grotesk,sans-serif" font-weight="600" font-size="9" opacity=".35">Ille-et-Vilaine · 35</text><circle cx="120" cy="70" r="22" fill="rgba(20,196,232,.1)" stroke="rgba(20,196,232,.3)" stroke-width="1"/><circle cx="120" cy="70" r="12" fill="rgba(20,196,232,.15)" stroke="rgba(20,196,232,.4)" stroke-width="1"/></svg>'
-        +'<div class="fiche-map-pin"><svg viewBox="0 0 100 44"><path d="M18 16 50 3 82 16" fill="none" stroke="#0B2A4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 30 50 17 82 30" fill="none" stroke="#3B82C4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 44 50 31 82 44" fill="none" stroke="#14C4E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
-        +'<div class="fiche-map-label">'+f.map.label+'</div><div class="fiche-map-tap">Ouvrir Maps ↗</div></a>';
-    }
     b+=ficheSec('Points forts',ficheUl(f.forts));
     b+=ficheSec('Clients emblématiques','<p>'+f.clients+'</p>');
   }
@@ -2310,8 +2296,10 @@ function renderQuizResult(){
   panel.innerHTML=h;
 }
 
-/* ---------- ENREGISTREMENT AUDIO ---------- */
+/* ---------- ENREGISTREMENT AUDIO — Méthode Mehrabian (vocal) ---------- */
 var _rec=null,_recChunks=[],_recTimer=null,_recSec=0,_recBlob=null,_recMode='idle';
+var _audioCtx=null,_analyser=null,_volSamples=[],_silenceCount=0,_speechCount=0;
+var _SILENCE_THRESH=0.02;
 function toggleRec(){
   if(_recMode==='recording') stopRec();
   else startRec();
@@ -2330,9 +2318,28 @@ function _startTimer(){
     if(_recSec>=120) stopRec();
   },1000);
 }
+function _startAudioAnalysis(stream){
+  try{
+    _audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    _analyser=_audioCtx.createAnalyser();
+    _analyser.fftSize=512;
+    var src=_audioCtx.createMediaStreamSource(stream);
+    src.connect(_analyser);
+    _volSamples=[];_silenceCount=0;_speechCount=0;
+    var buf=new Float32Array(_analyser.fftSize);
+    var iv=setInterval(function(){
+      if(_recMode!=='recording'){clearInterval(iv);return;}
+      _analyser.getFloatTimeDomainData(buf);
+      var sum=0;for(var i=0;i<buf.length;i++) sum+=buf[i]*buf[i];
+      var rms=Math.sqrt(sum/buf.length);
+      _volSamples.push(rms);
+      if(rms<_SILENCE_THRESH) _silenceCount++; else _speechCount++;
+    },200);
+  }catch(e){_audioCtx=null;_analyser=null;}
+}
 function startRec(){
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    _rec=null;_startTimer();return;
+    _rec=null;_volSamples=[];_silenceCount=0;_speechCount=0;_startTimer();return;
   }
   navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
     _rec=new MediaRecorder(stream);
@@ -2340,13 +2347,15 @@ function startRec(){
     _rec.ondataavailable=function(e){if(e.data.size>0)_recChunks.push(e.data);};
     _rec.onstop=function(){
       stream.getTracks().forEach(function(t){t.stop();});
+      if(_audioCtx){try{_audioCtx.close();}catch(e){}}
       _recBlob=new Blob(_recChunks,{type:'audio/webm'});
       showRecording();
     };
+    _startAudioAnalysis(stream);
     _rec.start();
     _startTimer();
   }).catch(function(){
-    _rec=null;_startTimer();
+    _rec=null;_volSamples=[];_silenceCount=0;_speechCount=0;_startTimer();
   });
 }
 function stopRec(){
@@ -2372,30 +2381,86 @@ function showRecording(){
 function evaluateRecording(){
   var ev=document.getElementById('rec-eval');ev.hidden=false;
   var dur=_recSec;
-  var durOk=dur>=15&&dur<=90, durWarn=dur>=10&&dur<15||dur>90&&dur<=120, durBad=dur<10||dur>120;
-  var items=[];
-  if(dur>=20) items.push({c:'green',t:'Durée correcte ('+dur+'s) — un bon pitch dure 20-60 secondes'});
-  else if(dur>=10) items.push({c:'orange',t:'Pitch un peu court ('+dur+'s) — vise 20-60 secondes'});
-  else items.push({c:'red',t:'Trop court ('+dur+'s) — reprends les arguments clés'});
-  items.push({c:'green',t:'Quiz réussi — tu maîtrises les chiffres clés'});
-  if(dur>=15) items.push({c:'green',t:'Assez long pour couvrir prix + services + cible'});
-  else items.push({c:'orange',t:'Pense à mentionner le prix, les services ET la cible'});
-  var score=items.filter(function(i){return i.c==='green';}).length;
-  var total=items.length;
-  var note=Math.round(score/total*10);
-  var h='<div class="rec-eval"><h4>Évaluation du pitch</h4>';
+  var hasAudio=_volSamples.length>0;
+  var totalSamples=_silenceCount+_speechCount;
+  var speechRatio=totalSamples>0?_speechCount/totalSamples:0;
+  var avgVol=0;if(_volSamples.length>0){var s=0;for(var i=0;i<_volSamples.length;i++)s+=_volSamples[i];avgVol=s/_volSamples.length;}
+  var volVariance=0;
+  if(_volSamples.length>1){var sq=0;for(var i=0;i<_volSamples.length;i++){var d=_volSamples[i]-avgVol;sq+=d*d;}volVariance=Math.sqrt(sq/_volSamples.length);}
+
+  var items=[];var pts=0;
+
+  /* --- VOCAL (Mehrabian 38% → 5 critères sur 10) --- */
+  /* 1. Durée optimale (pitch idéal 30-60s) — /2 pts */
+  if(dur>=30&&dur<=60){items.push({c:'green',t:'Durée idéale ('+dur+'s) — pitch maîtrisé entre 30 et 60 secondes',p:2});pts+=2;}
+  else if(dur>=20&&dur<30){items.push({c:'orange',t:'Un peu court ('+dur+'s) — développe tes arguments, vise 30-60s',p:1});pts+=1;}
+  else if(dur>60&&dur<=90){items.push({c:'orange',t:'Un peu long ('+dur+'s) — synthétise, un bon pitch tient en 30-60s',p:1});pts+=1;}
+  else if(dur>=10&&dur<20){items.push({c:'red',t:'Trop court ('+dur+'s) — tu survoles, impossible de convaincre',p:0});}
+  else if(dur>90){items.push({c:'red',t:'Trop long ('+dur+'s) — tu perds ton interlocuteur, max 60s',p:0});}
+  else{items.push({c:'red',t:'Beaucoup trop court ('+dur+'s) — ce n\'est pas un pitch',p:0});}
+
+  if(hasAudio){
+    /* 2. Volume — projection vocale — /1 pt */
+    if(avgVol>=0.04){items.push({c:'green',t:'Bonne projection vocale — voix claire et audible',p:1});pts+=1;}
+    else if(avgVol>=0.02){items.push({c:'orange',t:'Volume faible — parle plus fort, avec conviction',p:0});}
+    else{items.push({c:'red',t:'Volume trop faible — on ne t\'entend pas, projette ta voix',p:0});}
+
+    /* 3. Variation vocale (tonalité) — /1 pt */
+    if(volVariance>=0.015){items.push({c:'green',t:'Bonne variation de ton — tu captes l\'attention',p:1});pts+=1;}
+    else if(volVariance>=0.008){items.push({c:'orange',t:'Voix un peu monotone — varie le rythme et l\'intonation',p:0});}
+    else{items.push({c:'red',t:'Voix monotone — aucune variation, tu endors ton prospect',p:0});}
+
+    /* 4. Ratio parole/silence — fluidité — /1 pt */
+    if(speechRatio>=0.70){items.push({c:'green',t:'Discours fluide — peu d\'hésitations ('+Math.round(speechRatio*100)+'% de parole)',p:1});pts+=1;}
+    else if(speechRatio>=0.50){items.push({c:'orange',t:'Hésitations fréquentes ('+Math.round(speechRatio*100)+'% de parole) — prépare mieux ton texte',p:0});}
+    else{items.push({c:'red',t:'Trop de silences ('+Math.round(speechRatio*100)+'% de parole) — tu ne maîtrises pas ton pitch',p:0});}
+  } else {
+    items.push({c:'orange',t:'Analyse vocale indisponible (pas de micro) — 3 critères non évalués',p:0});
+  }
+
+  /* --- CONTENU (Mehrabian 7% → 3 critères sur 10) --- */
+  var quizPct=_trnState?Math.round(_trnState.score/_trnState.total*100):0;
+  /* 5. Maîtrise des données (quiz) — /1 pt */
+  if(quizPct>=90){items.push({c:'green',t:'Données maîtrisées ('+quizPct+'% au quiz) — tu connais ton sujet',p:1});pts+=1;}
+  else if(quizPct>=75){items.push({c:'orange',t:'Données partielles ('+quizPct+'% au quiz) — révise les chiffres clés',p:0});}
+  else{items.push({c:'red',t:'Données insuffisantes ('+quizPct+'% au quiz) — relis la fiche',p:0});}
+
+  /* 6. Structure du pitch (durée = proxy de couverture) — /1 pt */
+  if(dur>=25&&dur<=75){items.push({c:'green',t:'Durée suffisante pour couvrir : accroche + prix + cible + CTA',p:1});pts+=1;}
+  else{items.push({c:'red',t:'Pas assez de temps pour couvrir les 4 piliers du pitch',p:0});}
+
+  /* 7. Capacité à conclure (les dernières secondes comptent) — /1 pt */
+  if(dur>=20){items.push({c:'green',t:'Assez long pour inclure un appel à l\'action final',p:1});pts+=1;}
+  else{items.push({c:'red',t:'Pas de conclusion — toujours finir par une demande concrète',p:0});}
+
+  /* --- CONFIANCE (adaptation Mehrabian 55% geste → attitude vocale) --- */
+  /* 8. Assurance globale = combo durée + volume + quiz — /2 pts */
+  var confScore=0;
+  if(dur>=25) confScore++;
+  if(hasAudio&&avgVol>=0.03) confScore++;
+  if(quizPct>=80) confScore++;
+  if(hasAudio&&speechRatio>=0.60) confScore++;
+  if(confScore>=4){items.push({c:'green',t:'Attitude confiante — tu dégages de l\'assurance',p:2});pts+=2;}
+  else if(confScore>=2){items.push({c:'orange',t:'Manque d\'assurance — entraîne-toi à voix haute avant',p:1});pts+=1;}
+  else{items.push({c:'red',t:'Pas convainquant — on sent que tu ne maîtrises pas le sujet',p:0});}
+
+  var note=Math.min(pts,10);
+  var h='<div class="rec-eval">';
+  h+='<h4>Évaluation Mehrabian <span style="font-weight:400;font-size:12px;color:var(--muted)">(vocal + contenu + confiance)</span></h4>';
   items.forEach(function(i){
     h+='<div class="re-item"><span class="re-dot '+i.c+'"></span><span>'+i.t+'</span></div>';
   });
   h+='<div class="re-score">Note : '+note+'/10</div>';
-  if(note>=7) h+='<p style="font-size:13px;color:#1E7D5A;text-align:center;margin-top:8px;font-weight:600">Tu es prêt à grounder ! Fonce.</p>';
-  else h+='<p style="font-size:13px;color:#C9922E;text-align:center;margin-top:8px;font-weight:600">Réécoute-toi et retente — tu y es presque.</p>';
+  if(note>=8) h+='<p style="font-size:13px;color:#1E7D5A;text-align:center;margin-top:8px;font-weight:600">Excellent ! Tu es prêt à grounder. Fonce.</p>';
+  else if(note>=6) h+='<p style="font-size:13px;color:#C9922E;text-align:center;margin-top:8px;font-weight:600">Pas mal, mais pas encore prêt. Réécoute-toi et corrige les points orange/rouge.</p>';
+  else if(note>=4) h+='<p style="font-size:13px;color:#C0574A;text-align:center;margin-top:8px;font-weight:600">Insuffisant. Relis la fiche, entraîne-toi à voix haute, puis réenregistre.</p>';
+  else h+='<p style="font-size:13px;color:#C0574A;text-align:center;margin-top:8px;font-weight:600">Il faut tout reprendre. Étudie la fiche, répète 5 fois à voix haute, puis retente.</p>';
   h+='</div>';
   h+='<button class="rec-retry" onclick="retryRec()">Recommencer l\'enregistrement</button>';
   ev.innerHTML=h;
 }
 function retryRec(){
-  _recBlob=null;_recSec=0;
+  _recBlob=null;_recSec=0;_volSamples=[];_silenceCount=0;_speechCount=0;
   var pl=document.getElementById('rec-player');if(pl){pl.hidden=true;pl.innerHTML='';}
   var ev=document.getElementById('rec-eval');if(ev){ev.hidden=true;ev.innerHTML='';}
   document.getElementById('rec-label').textContent='Appuie pour enregistrer';
