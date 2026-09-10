@@ -601,7 +601,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ch-head{display:flex;align-items:center;justify-content:space-between;margin-top:22px}
 .ch-carousel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:10px 0 6px;scrollbar-width:none}
 .ch-carousel::-webkit-scrollbar{display:none}
-.ch-slide{flex:0 0 87%;scroll-snap-align:start;margin-top:0}
+.ch-slide{flex:0 0 92%;scroll-snap-align:start;margin-top:0}
+.ch-card-strava{background:#fff;border:1px solid var(--hair);border-radius:18px;overflow:hidden;box-shadow:0 2px 12px rgba(11,42,74,.06)}
+.ch-strava-count{font-size:12.5px;color:#6E7480;padding:14px 18px 0;font-weight:500}
+.ch-strava-body{display:flex;gap:14px;align-items:flex-start;padding:12px 18px 0}
+.ch-strava-badge{width:64px;height:64px;flex:0 0 auto;animation:chPulse 3s ease-in-out infinite}
+.ch-strava-badge svg{width:100%;height:100%;display:block}
+.ch-strava-info{flex:1}
+.ch-strava-title{font-family:'Space Grotesk';font-weight:700;font-size:17px;color:#0B2A4A;line-height:1.2}
+.ch-strava-desc{font-size:13px;color:#4a5260;line-height:1.45;margin-top:4px}
+.ch-strava-tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#0B2A4A;background:var(--gold-wash);border:1px solid var(--gold-l);padding:3px 10px;border-radius:6px;letter-spacing:.03em}
+.ch-strava-cta{display:block;width:calc(100% - 36px);margin:14px 18px 16px;background:var(--gold);color:#fff;border:none;font-family:'Space Grotesk';font-weight:700;font-size:15px;padding:13px;border-radius:12px;cursor:pointer;text-align:center;position:relative;overflow:hidden}
+.ch-strava-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:ctaShine 2.8s ease-in-out infinite}
 .ch2-line{margin-top:14px;font-size:13.5px;color:#4a5260;line-height:1.45}
 .ch2-line b{color:#0B2A4A}
 .ch-slide .ch2-cta{width:100%;margin-top:16px;text-align:center}
@@ -1500,15 +1511,24 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
       <div class="ch-head"><span class="h2">Challenges</span><span class="seeall" onclick="show('challenges')">Tout voir ›</span></div>
       <div class="ch-carousel">
-        <div class="ch2 ch-slide ch-main">
-          <div class="ch2-top"><div class="ch2-badge"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="37" fill="#fff" stroke="#e3edf2"/><path d="M24 34 38 26 52 34" fill="none" stroke="#0B2A4A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 41 38 33 52 41" fill="none" stroke="#3B82C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 48 38 40 52 48" fill="none" stroke="#14C4E8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="ch2-kicker">En cours · 247 inscrits</div><div class="ch2-title">Challenge Grounders 2026</div></div></div>
-          <div class="ch2-prog"><div class="ch2-prog-top"><span id="ch-signed">0 / 200 pts</span><span class="ch2-days">18 j</span></div><div class="ch2-bar"><i id="ch-bar" style="width:0%"></i></div></div>
-          <button class="ch2-cta" onclick="show('challenges')">Participer & exploser le classement →</button>
+        <div class="ch-card-strava ch-slide">
+          <div class="ch-strava-count">247 grounders participent déjà</div>
+          <div class="ch-strava-body">
+            <div class="ch-strava-badge"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="36" fill="#EAF7FC" stroke="#14C4E8" stroke-width="2"/><path d="M24 34 38 26 52 34" fill="none" stroke="#0B2A4A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 41 38 33 52 41" fill="none" stroke="#3B82C4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 48 38 40 52 48" fill="none" stroke="#14C4E8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="ch-strava-info">
+              <div class="ch-strava-title">Challenge Grounders 2026</div>
+              <div class="ch-strava-desc">Envoyez un max de grounds et explosez le classement. Le top grounder gagne gros.</div>
+              <span class="ch-strava-tag">Reward</span>
+            </div>
+          </div>
+          <button class="ch-strava-cta" onclick="show('challenges')">Rejoindre le Challenge</button>
         </div>
-        <div class="ch2 ch-slide" style="background:var(--gold-d);border-color:var(--gold-d)">
-          <div style="text-align:center;padding:8px 0">
-            <div style="font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#fff">Défi Partenaire</div>
-            <div style="font-size:13px;color:var(--gold-l);font-weight:600;margin-top:4px">SOON</div>
+        <div class="ch-card-strava ch-slide" style="opacity:.7">
+          <div class="ch-strava-body" style="justify-content:center;padding:18px 0">
+            <div class="ch-strava-info" style="text-align:center">
+              <div class="ch-strava-title">Défi Partenaire</div>
+              <div class="ch-strava-desc" style="color:var(--muted)">Bientôt disponible…</div>
+            </div>
           </div>
         </div>
       </div>
