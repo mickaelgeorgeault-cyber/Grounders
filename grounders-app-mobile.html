@@ -2311,15 +2311,32 @@ function renderQuizResult(){
 }
 
 /* ---------- ENREGISTREMENT AUDIO ---------- */
-var _rec=null,_recChunks=[],_recTimer=null,_recSec=0,_recBlob=null;
+var _rec=null,_recChunks=[],_recTimer=null,_recSec=0,_recBlob=null,_recMode='idle';
 function toggleRec(){
-  if(_rec&&_rec.state==='recording') stopRec();
+  if(_recMode==='recording') stopRec();
   else startRec();
 }
+function _startTimer(){
+  _recSec=0;_recMode='recording';
+  var btn=document.getElementById('rec-btn');
+  btn.classList.remove('idle');btn.classList.add('recording');
+  btn.innerHTML='<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+  document.getElementById('rec-label').textContent='Enregistrement en cours…';
+  var tm=document.getElementById('rec-timer');tm.hidden=false;tm.textContent='0:00';
+  _recTimer=setInterval(function(){
+    _recSec++;
+    var m=Math.floor(_recSec/60),s=_recSec%60;
+    tm.textContent=m+':'+(s<10?'0':'')+s;
+    if(_recSec>=120) stopRec();
+  },1000);
+}
 function startRec(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    _rec=null;_startTimer();return;
+  }
   navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
     _rec=new MediaRecorder(stream);
-    _recChunks=[];_recSec=0;
+    _recChunks=[];
     _rec.ondataavailable=function(e){if(e.data.size>0)_recChunks.push(e.data);};
     _rec.onstop=function(){
       stream.getTracks().forEach(function(t){t.stop();});
@@ -2327,34 +2344,29 @@ function startRec(){
       showRecording();
     };
     _rec.start();
-    var btn=document.getElementById('rec-btn');
-    btn.classList.remove('idle');btn.classList.add('recording');
-    btn.innerHTML='<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
-    document.getElementById('rec-label').textContent='Enregistrement en cours…';
-    var tm=document.getElementById('rec-timer');tm.hidden=false;tm.textContent='0:00';
-    _recTimer=setInterval(function(){
-      _recSec++;
-      var m=Math.floor(_recSec/60),s=_recSec%60;
-      tm.textContent=m+':'+(s<10?'0':'')+s;
-      if(_recSec>=120) stopRec();
-    },1000);
+    _startTimer();
   }).catch(function(){
-    toast('Accès au micro refusé — vérifie les autorisations.');
+    _rec=null;_startTimer();
   });
 }
 function stopRec(){
+  clearInterval(_recTimer);_recMode='idle';
   if(_rec&&_rec.state==='recording'){_rec.stop();}
-  clearInterval(_recTimer);
+  else{showRecording();}
   var btn=document.getElementById('rec-btn');
   btn.classList.remove('recording');btn.classList.add('idle');
   btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 1a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z"/><path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="#fff" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="#fff" stroke-width="2"/></svg>';
   document.getElementById('rec-label').textContent='Terminé !';
 }
 function showRecording(){
-  var url=URL.createObjectURL(_recBlob);
   var pl=document.getElementById('rec-player');
   pl.hidden=false;
-  pl.innerHTML='<audio controls src="'+url+'" style="width:100%;border-radius:8px"></audio>';
+  if(_recBlob){
+    var url=URL.createObjectURL(_recBlob);
+    pl.innerHTML='<audio controls src="'+url+'" style="width:100%;border-radius:8px"></audio>';
+  } else {
+    pl.innerHTML='<div style="padding:12px;border-radius:8px;background:var(--gold-wash);color:var(--ink);font-size:13px">Micro non disponible — évaluation basée sur le chrono.</div>';
+  }
   evaluateRecording();
 }
 function evaluateRecording(){
