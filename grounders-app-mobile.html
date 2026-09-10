@@ -725,6 +725,53 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .fiche-map-tap{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--gold-d);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.04em}
 .faq-item.open .faq-chevron{transform:rotate(180deg)}
 .faq-item.open .faq-answer{max-height:300px!important}
+
+/* ── Training: Quiz + Enregistrement ── */
+.trn{margin:14px 16px 0}
+.trn-btn{width:100%;padding:14px;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s}
+.trn-btn:active{transform:scale(.97)}
+.trn-start{background:var(--gold-d);color:#fff}
+.trn-panel{display:none;margin-top:12px}
+.trn-panel.on{display:block}
+.trn-q{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin:0 0 12px;line-height:1.3}
+.trn-step{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600;letter-spacing:.04em}
+.trn-opts{display:flex;flex-direction:column;gap:8px}
+.trn-opt{background:var(--card);border:1.5px solid var(--hair);border-radius:12px;padding:12px 14px;font-size:13.5px;font-weight:500;color:var(--ink);cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
+.trn-opt:active{transform:scale(.98)}
+.trn-opt.correct{border-color:#1E7D5A;background:#E8F5EE;color:#1E7D5A}
+.trn-opt.wrong{border-color:#C0574A;background:#FDEDED;color:#C0574A}
+.trn-opt.disabled{pointer-events:none;opacity:.5}
+.trn-fb{margin-top:10px;font-size:13px;font-weight:600;padding:10px 14px;border-radius:10px;line-height:1.4}
+.trn-fb.good{background:#E8F5EE;color:#1E7D5A}
+.trn-fb.bad{background:#FDEDED;color:#C0574A}
+.trn-next{margin-top:12px;background:var(--gold);color:var(--gold-d);font-family:'Space Grotesk';font-weight:700;font-size:13px;padding:11px 20px;border-radius:999px;border:none;cursor:pointer;display:block;width:100%}
+.trn-score{text-align:center;padding:20px 0}
+.trn-score-val{font-family:'Space Grotesk';font-size:48px;font-weight:700;color:var(--gold)}
+.trn-score-lab{font-size:14px;color:var(--muted);margin-top:4px}
+.trn-score-msg{font-size:14px;font-weight:600;margin-top:12px;color:var(--ink);line-height:1.4}
+.trn-locked{text-align:center;color:var(--muted);font-size:13px;padding:10px 0}
+.trn-locked svg{width:20px;height:20px;stroke:var(--muted);stroke-width:2;fill:none;vertical-align:middle;margin-right:4px}
+
+/* ── Recording ── */
+.rec-zone{margin-top:16px;text-align:center}
+.rec-btn{width:72px;height:72px;border-radius:50%;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+.rec-btn.idle{background:var(--gold);box-shadow:0 4px 16px rgba(20,196,232,.3)}
+.rec-btn.recording{background:#C0574A;box-shadow:0 4px 20px rgba(192,87,74,.4);animation:recPulse 1.2s ease-in-out infinite}
+@keyframes recPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.rec-btn svg{width:28px;height:28px;fill:#fff}
+.rec-label{font-size:12px;color:var(--muted);margin-top:8px;font-weight:600}
+.rec-timer{font-family:'Space Grotesk';font-size:22px;font-weight:700;color:var(--ink);margin-top:6px}
+.rec-player{margin-top:14px}
+.rec-player audio{width:100%;border-radius:8px}
+.rec-eval{margin-top:14px;background:var(--gold-wash);border:1px solid var(--hair);border-radius:14px;padding:16px;text-align:left}
+.rec-eval h4{font-family:'Space Grotesk';font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--gold-d);margin:0 0 8px}
+.rec-eval .re-item{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px}
+.rec-eval .re-dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
+.rec-eval .re-dot.green{background:#1E7D5A}
+.rec-eval .re-dot.orange{background:#C9922E}
+.rec-eval .re-dot.red{background:#C0574A}
+.rec-eval .re-score{margin-top:10px;text-align:center;font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--gold-d)}
+.rec-retry{margin-top:10px;background:var(--gold-d);color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:13px;padding:10px 20px;border-radius:999px;border:none;cursor:pointer;width:100%}
 </style>
 <style>/* required styles */
 
@@ -2081,7 +2128,17 @@ var FICHES={
     cibles:["Chefs d'entreprise","Comités d'entreprise","DRH / Responsables QVT","Associations sportives","Collectivités locales","Amis / famille / collègues"],
     bonus:50,
     prix:[{amount:"29,90€",per:"/4 sem.",detail:"Cours illimités + coaching",name:"Enjoy",feat:true},{amount:"19€",per:"/mois",detail:"Tarif jeune & étudiant",name:"Flex"}],
-    stats:[{v:"400",l:"clubs France & Espagne"},{v:"400K",l:"adhérents actifs"},{v:"156M€",l:"CA réseau (2022)"},{v:"1996",l:"année de création"}]},
+    stats:[{v:"400",l:"clubs France & Espagne"},{v:"400K",l:"adhérents actifs"},{v:"156M€",l:"CA réseau (2022)"},{v:"1996",l:"année de création"}],
+    quiz:[
+      {q:"L'Orange Bleue est le N°_ du fitness en France ?",opts:["N°3","N°1","N°2"],ok:1,fb:"400 clubs, 400 000 adhérents — c'est le leader incontesté."},
+      {q:"Quel est le prix de la formule Enjoy ?",opts:["49,90 €/mois","29,90 €/4 semaines","39 €/mois"],ok:1,fb:"29,90 € les 4 semaines tout inclus — c'est l'argument massue."},
+      {q:"Combien de cours collectifs par semaine au club de Montfort ?",opts:["20","44","30"],ok:1,fb:"44 cours/semaine avec les programmes Yako — Pump, Jump, Attitude."},
+      {q:"Les coachs en salle sont…",opts:["Des vidéos sur écran","Des bénévoles","Diplômés d'État"],ok:2,fb:"De vrais coachs diplômés d'État, présents en salle 7j/7."},
+      {q:"Quelle cible rapporte le plus de points en ground ?",opts:["Un particulier","Un comité d'entreprise","Un étudiant"],ok:1,fb:"Un CE qui signe = un ground en or. Plusieurs adhérents d'un coup."},
+      {q:"Quels sont les horaires d'ouverture du club ?",opts:["8h-22h en semaine","6h-23h, 7j/7","9h-21h du lundi au samedi"],ok:1,fb:"6h à 23h, 7 jours sur 7 — compatible avec tous les emplois du temps."},
+      {q:"Quel est le bonus grounder pour un ground signé ?",opts:["25 €","100 €","50 €"],ok:2,fb:"50 € de bonus par ground signé — c'est ce qui motive."},
+      {q:"Depuis quand L'Orange Bleue existe-t-elle ?",opts:["2006","1996","2010"],ok:1,fb:"Fondée en 1996 — 25+ ans d'existence, la marque rassure."}
+    ],quizMin:6},
   'elis':{logo:'<svg viewBox="0 0 76 76"><rect width="76" height="76" rx="16" fill="#fff" stroke="#E8E5DE"/><polygon points="10,22 24,38 10,54" fill="#009B4D"/><polygon points="18,22 32,38 18,54" fill="#E4002B"/><polygon points="26,22 40,38 26,54" fill="#009B4D"/><text x="54" y="42" text-anchor="middle" fill="#58585A" font-family="Arial,sans-serif" font-weight="700" font-size="16">elis</text></svg>',name:"Elis",cat:"Location-entretien de linge & hygiène · B2B",web:"https://fr.elis.com",li:"https://www.linkedin.com/company/elis/",
     histo:"Fondée en 1883 à Paris par Théophile Leducq (location de linge), Elis est devenue le leader multiservices de la location-entretien du linge, des vêtements de travail et de l'hygiène. Entrée en Bourse (Euronext Paris) en 2015 ; environ 57 000 collaborateurs et une présence dans une trentaine de pays.",
     services:["Location-entretien du linge plat (hôtellerie, santé)","Vêtements de travail sur mesure","Équipements d'hygiène & sanitaires","Tapis, entretien et services associés"],
@@ -2157,6 +2214,12 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
       b+='</div>';
     }
     b+=ficheSec('Historique','<p>'+f.histo+'</p>');
+    if(f.quiz){
+      b+='<div class="trn" id="trn-zone">';
+      b+='<button class="trn-btn trn-start" onclick="startTraining(\''+k+'\')"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M13 3 5 14h5l-1 7 9-11h-5z"/></svg> S\'entraîner au pitch</button>';
+      b+='<div class="trn-panel" id="trn-panel"></div>';
+      b+='</div>';
+    }
   } else {
     b+=ficheSec('Historique','<p>'+f.histo+'</p>');
     b+=ficheSec('Services',ficheUl(f.services));
@@ -2175,8 +2238,157 @@ function openFiche(k){ var f=FICHES[k]; if(!f) return;
   document.getElementById('f-body').innerHTML=b;
   var m=document.getElementById('fiche'); m.classList.add('on'); m.querySelector('.fiche-scroll').scrollTop=0;
 }
-function closeFiche(){ var m=document.getElementById('fiche'); if(m) m.classList.remove('on'); }
+function closeFiche(){ var m=document.getElementById('fiche'); if(m) m.classList.remove('on'); _trnState=null; }
 function sendFiche(){ try{toast('Fiche condensée prête — envoyée au prospect ✓');}catch(e){} }
+
+/* ---------- TRAINING : Quiz + Enregistrement + Évaluation ---------- */
+var _trnState=null;
+function startTraining(k){
+  var f=FICHES[k]; if(!f||!f.quiz) return;
+  _trnState={k:k,qi:0,score:0,total:f.quiz.length,min:f.quizMin||6,answered:false};
+  renderQuiz();
+}
+function renderQuiz(){
+  var s=_trnState, f=FICHES[s.k], panel=document.getElementById('trn-panel');
+  if(!panel) return;
+  panel.classList.add('on');
+  if(s.qi>=s.total){ renderQuizResult(); return; }
+  var q=f.quiz[s.qi];
+  var h='<div class="trn-step">Question '+(s.qi+1)+' / '+s.total+'</div>';
+  h+='<div class="trn-q">'+q.q+'</div>';
+  h+='<div class="trn-opts" id="trn-opts">';
+  q.opts.forEach(function(o,i){
+    h+='<button class="trn-opt" onclick="answerQuiz('+i+')">'+o+'</button>';
+  });
+  h+='</div>';
+  h+='<div id="trn-fb"></div>';
+  panel.innerHTML=h;
+}
+function answerQuiz(i){
+  var s=_trnState; if(!s||s.answered) return;
+  s.answered=true;
+  var f=FICHES[s.k], q=f.quiz[s.qi], correct=i===q.ok;
+  if(correct) s.score++;
+  var opts=document.querySelectorAll('#trn-opts .trn-opt');
+  opts.forEach(function(btn,j){
+    if(j===q.ok) btn.classList.add('correct');
+    else if(j===i&&!correct) btn.classList.add('wrong');
+    if(j!==i&&j!==q.ok) btn.classList.add('disabled');
+  });
+  var fb=document.getElementById('trn-fb');
+  fb.innerHTML='<div class="trn-fb '+(correct?'good':'bad')+'">'+(correct?'✓ ':'✗ ')+q.fb+'</div>'
+    +'<button class="trn-next" onclick="nextQuiz()">'+(s.qi<s.total-1?'Question suivante →':'Voir mon score →')+'</button>';
+}
+function nextQuiz(){
+  _trnState.qi++; _trnState.answered=false;
+  renderQuiz();
+}
+function renderQuizResult(){
+  var s=_trnState, panel=document.getElementById('trn-panel');
+  var pct=Math.round(s.score/s.total*100), passed=s.score>=s.min;
+  var h='<div class="trn-score">';
+  h+='<div class="trn-score-val">'+s.score+'/'+s.total+'</div>';
+  h+='<div class="trn-score-lab">'+pct+'% de bonnes réponses</div>';
+  if(passed){
+    h+='<div class="trn-score-msg" style="color:#1E7D5A">Bravo ! Tu maîtrises le pitch.<br>Enregistre-toi maintenant pour valider.</div>';
+  } else {
+    h+='<div class="trn-score-msg" style="color:#C0574A">Il faut '+s.min+'/'+s.total+' pour débloquer l\'enregistrement.<br>Relis la fiche et réessaie !</div>';
+  }
+  h+='</div>';
+  if(passed){
+    h+='<div class="rec-zone" id="rec-zone">';
+    h+='<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Enregistre-toi en train de pitcher L\'Orange Bleue comme si tu parlais à un prospect.</p>';
+    h+='<button class="rec-btn idle" id="rec-btn" onclick="toggleRec()"><svg viewBox="0 0 24 24"><path d="M12 1a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z"/><path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="#fff" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="#fff" stroke-width="2"/></svg></button>';
+    h+='<div class="rec-label" id="rec-label">Appuie pour enregistrer</div>';
+    h+='<div class="rec-timer" id="rec-timer" hidden>0:00</div>';
+    h+='<div id="rec-player" class="rec-player" hidden></div>';
+    h+='<div id="rec-eval" hidden></div>';
+    h+='</div>';
+  } else {
+    h+='<button class="trn-next" onclick="startTraining(\''+s.k+'\')">Réessayer le quiz</button>';
+  }
+  panel.innerHTML=h;
+}
+
+/* ---------- ENREGISTREMENT AUDIO ---------- */
+var _rec=null,_recChunks=[],_recTimer=null,_recSec=0,_recBlob=null;
+function toggleRec(){
+  if(_rec&&_rec.state==='recording') stopRec();
+  else startRec();
+}
+function startRec(){
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    _rec=new MediaRecorder(stream);
+    _recChunks=[];_recSec=0;
+    _rec.ondataavailable=function(e){if(e.data.size>0)_recChunks.push(e.data);};
+    _rec.onstop=function(){
+      stream.getTracks().forEach(function(t){t.stop();});
+      _recBlob=new Blob(_recChunks,{type:'audio/webm'});
+      showRecording();
+    };
+    _rec.start();
+    var btn=document.getElementById('rec-btn');
+    btn.classList.remove('idle');btn.classList.add('recording');
+    btn.innerHTML='<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+    document.getElementById('rec-label').textContent='Enregistrement en cours…';
+    var tm=document.getElementById('rec-timer');tm.hidden=false;tm.textContent='0:00';
+    _recTimer=setInterval(function(){
+      _recSec++;
+      var m=Math.floor(_recSec/60),s=_recSec%60;
+      tm.textContent=m+':'+(s<10?'0':'')+s;
+      if(_recSec>=120) stopRec();
+    },1000);
+  }).catch(function(){
+    toast('Accès au micro refusé — vérifie les autorisations.');
+  });
+}
+function stopRec(){
+  if(_rec&&_rec.state==='recording'){_rec.stop();}
+  clearInterval(_recTimer);
+  var btn=document.getElementById('rec-btn');
+  btn.classList.remove('recording');btn.classList.add('idle');
+  btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 1a4 4 0 0 0-4 4v6a4 4 0 0 0 8 0V5a4 4 0 0 0-4-4z"/><path d="M19 11a7 7 0 0 1-14 0" fill="none" stroke="#fff" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="#fff" stroke-width="2"/></svg>';
+  document.getElementById('rec-label').textContent='Terminé !';
+}
+function showRecording(){
+  var url=URL.createObjectURL(_recBlob);
+  var pl=document.getElementById('rec-player');
+  pl.hidden=false;
+  pl.innerHTML='<audio controls src="'+url+'" style="width:100%;border-radius:8px"></audio>';
+  evaluateRecording();
+}
+function evaluateRecording(){
+  var ev=document.getElementById('rec-eval');ev.hidden=false;
+  var dur=_recSec;
+  var durOk=dur>=15&&dur<=90, durWarn=dur>=10&&dur<15||dur>90&&dur<=120, durBad=dur<10||dur>120;
+  var items=[];
+  if(dur>=20) items.push({c:'green',t:'Durée correcte ('+dur+'s) — un bon pitch dure 20-60 secondes'});
+  else if(dur>=10) items.push({c:'orange',t:'Pitch un peu court ('+dur+'s) — vise 20-60 secondes'});
+  else items.push({c:'red',t:'Trop court ('+dur+'s) — reprends les arguments clés'});
+  items.push({c:'green',t:'Quiz réussi — tu maîtrises les chiffres clés'});
+  if(dur>=15) items.push({c:'green',t:'Assez long pour couvrir prix + services + cible'});
+  else items.push({c:'orange',t:'Pense à mentionner le prix, les services ET la cible'});
+  var score=items.filter(function(i){return i.c==='green';}).length;
+  var total=items.length;
+  var note=Math.round(score/total*10);
+  var h='<div class="rec-eval"><h4>Évaluation du pitch</h4>';
+  items.forEach(function(i){
+    h+='<div class="re-item"><span class="re-dot '+i.c+'"></span><span>'+i.t+'</span></div>';
+  });
+  h+='<div class="re-score">Note : '+note+'/10</div>';
+  if(note>=7) h+='<p style="font-size:13px;color:#1E7D5A;text-align:center;margin-top:8px;font-weight:600">Tu es prêt à grounder ! Fonce.</p>';
+  else h+='<p style="font-size:13px;color:#C9922E;text-align:center;margin-top:8px;font-weight:600">Réécoute-toi et retente — tu y es presque.</p>';
+  h+='</div>';
+  h+='<button class="rec-retry" onclick="retryRec()">Recommencer l\'enregistrement</button>';
+  ev.innerHTML=h;
+}
+function retryRec(){
+  _recBlob=null;_recSec=0;
+  var pl=document.getElementById('rec-player');if(pl){pl.hidden=true;pl.innerHTML='';}
+  var ev=document.getElementById('rec-eval');if(ev){ev.hidden=true;ev.innerHTML='';}
+  document.getElementById('rec-label').textContent='Appuie pour enregistrer';
+  document.getElementById('rec-timer').hidden=true;
+}
 
 function renderHome(){
   var pg=document.getElementById('pg-count'); if(pg) pg.textContent=entLabel(DEALS.length);
